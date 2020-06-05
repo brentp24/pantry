@@ -5,12 +5,41 @@
   <title>Passport Authentication</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
+<h1>PANTRY</h1>
+  <div class="field">
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="email" placeholder="Email">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control has-icons-left">
+      <input class="input" type="password" placeholder="Password">
+      <span class="icon is-small is-left">
+        <i class="fas fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-success">
+        Login
+      </button>
+    </p>
+  </div>
+  
+  <!-- <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
       </div>
@@ -39,7 +68,7 @@
         <p>Or log in <a href="/login">here</a></p>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
