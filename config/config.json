@@ -3,7 +3,8 @@
     "username": "root",
     "password": "password",
     "database": "pantry_db",
-    "host": "127.0.0.1",
+
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
