@@ -19,10 +19,14 @@
     "bulma-start": "0.0.4",
     "express": "^4.17.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "express-session": "^1.17.1",
 =======
     "express-session": "^1.16.1",
 >>>>>>> ced7bae064775bd536ef1c8499175bf195db656a
+=======
+    "express-session": "^1.17.1",
+>>>>>>> master
     "handlebars": "^4.7.6",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
