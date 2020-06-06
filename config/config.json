@@ -2,13 +2,8 @@
   "development": {
     "username": "root",
     "password": "password",
-
     "database": "pantry_db",
     "host": "localhost",
-
-    
-    
-
     "dialect": "mysql"
   },
   "test": {
