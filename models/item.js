@@ -4,7 +4,7 @@
 
 // Creating a table used to store the products/items
 // users can add to their shopping list and pantry
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Item = sequelize.define("Item", {
         itemName: {
             type: DataTypes.STRING,
