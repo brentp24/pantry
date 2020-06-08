@@ -38,10 +38,37 @@ a {
    height: 70px;
  }
  /*Main Pantry*/
+ 
  .card-content2 {
-   height: 600px;
-   background-color: khaki;
- }
- body {
+  width: 100%;
+  height: 785px;
    background-color: lightsalmon;
  }
+ img{
+   /* height: 700px; */
+   cursor: pointer;
+ }
+ #shoppingTile {
+margin-left: 15px;
+ }
+ #expiring-subtitle {
+   margin-top: 15px;
+ }
+#recipeTile {
+  /* margin-left: 15px; */
+  height:50px;
+}
+
+#mealTile {
+  margin-right: 15px;
+}
+#lunchPic {
+  margin-top: 25px;
+}
+#dinnerPic {
+  margin-top: 25px;;
+}
+/*Shopping list*/
+/* .w3-container {
+  margin-left: 450px;
+} */
