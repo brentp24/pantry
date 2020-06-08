@@ -7,16 +7,23 @@ global.document = document;
 const $ = (jQuery = require("jquery")(window));
 
 const apikey = "527c6d48a93a43bf8f435bcfd7846114";
-const ingredients = "&query=cheese";
+const ingredients = "&ingredients=cheese,flour,apples";
+const limitLicense = "&limitLicense=true";
 const cuisine = "&cuisine=italian";
-const number = "&number=2";
+const number = "&number=5";
+const ranking = "&ranking=1";
+const ignorePantry = "&ignorePantry=true";
+
 function getRecipes() {
   $.ajax({
     url:
-      "https://api.spoonacular.com/recipes/complexSearch?apiKey=" +
+      "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" +
       apikey +
       ingredients +
       cuisine +
+      ranking +
+      limitLicense +
+      ignorePantry +
       number,
 
     method: "GET"
