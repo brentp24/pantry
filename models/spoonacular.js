@@ -40,11 +40,6 @@ function getRecipes() {
 function createHTML(recipeData) {
   console.log("testing from our function");
   console.log(recipeData);
-//   const rawTemplate = document.getElementById("recipeTemplate").innerHTML;
-//   const compiledTemplate = Handlebars.compile(rawTemplate);
-//   const ourGeneratedHTML = compiledTemplate(recipeData);
-//   const recipeContainer = document.getElementById("recipe-container");
-//   recipeContainer.innerHTML = ourGeneratedHTML;
 }
 
 getRecipes();
