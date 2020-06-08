@@ -25,15 +25,26 @@ function getRecipes() {
       limitLicense +
       ignorePantry +
       number,
-
     method: "GET"
   })
     .then(response => {
-      console.log(response);
+      const recipeData = response;
+      createHTML(recipeData);
+      //   console.log(response);
     })
     .catch(error => {
       console.log(error);
     });
+}
+
+function createHTML(recipeData) {
+  console.log("testing from our function");
+  console.log(recipeData);
+//   const rawTemplate = document.getElementById("recipeTemplate").innerHTML;
+//   const compiledTemplate = Handlebars.compile(rawTemplate);
+//   const ourGeneratedHTML = compiledTemplate(recipeData);
+//   const recipeContainer = document.getElementById("recipe-container");
+//   recipeContainer.innerHTML = ourGeneratedHTML;
 }
 
 getRecipes();
