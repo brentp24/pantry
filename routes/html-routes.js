@@ -26,6 +26,25 @@ module.exports = function(app) {
     res.render("shopping");
   });
 
+  app.get("/expiring", (req, res) => {
+    res.render("expiring");
+  });
+
+  app.get("/recipe", (req, res) => {
+    res.render("recipe");
+  });
+
+  app.get("/appetizers", (req, res) => {
+    res.render("appetizers");
+  });
+
+  app.get("/sidedish", (req, res) => {
+    res.render("sidedish");
+  });
+  app.get("/maincourse", (req, res) => {
+    res.render("maincourse");
+  });
+
   app.get("/recipes", (req, res) => {
     res.render("recipes", {
       title: "My recipes!",
@@ -41,26 +60,4 @@ module.exports = function(app) {
       recipe
     });
   });
-
-  // app.get("/", (req, res) => {
-  //   // If the user already has an account send them to the members page
-  //   if (req.user) {
-  //     return res.redirect("/members");
-  //   }
-  //   res.sendFile(path.join(__dirname, "../public/signup.html"));
-  // });
-
-  // app.get("/login", (req, res) => {
-  //   // If the user already has an account send them to the members page
-  //   if (req.user) {
-  //     return res.redirect("/members");
-  //   }
-  //   res.sendFile(path.join(__dirname, "../public/login.html"));
-  // });
-
-  // // Here we've add our isAuthenticated middleware to this route.
-  // // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  // app.get("/members", isAuthenticated, (req, res) => {
-  //   res.sendFile(path.join(__dirname, "../public/members.html"));
-  // });
 };

@@ -35,6 +35,7 @@ a {
  #navbarBasicExample {
    margin-top: 5px;
    margin-left: 350px;
+   margin-bottom: 45px;
    height: 70px;
  }
  /*Main Pantry*/
@@ -62,13 +63,98 @@ margin-left: 15px;
 #mealTile {
   margin-right: 15px;
 }
-#lunchPic {
+#sidePic {
   margin-top: 25px;
 }
 #dinnerPic {
   margin-top: 25px;;
 }
-/*Shopping list*/
-/* .w3-container {
-  margin-left: 450px;
-} */
+
+/*Expiring Page*/
+#expiringContainer{
+  height:550px;
+  background-color: paleturquoise;
+
+}
+#handlebarPrac {
+  height: 450px;
+  width: 450px;
+  background-color: linen;
+}
+
+
+
+
+
+
+
+
+
+/*Recipe Page*/
+#recipeContainer {
+  height:550px;
+  background-color: paleturquoise;
+}
+#handlebarPrac {
+  height: 450px;
+  width: 450px;
+  background-color: linen;
+}
+
+
+
+
+
+
+
+
+
+/*Shopping Page*/
+#shoppingContainer {
+
+}
+
+/*Appetizers Page*/
+#appetizersContainer {
+height: 550px;
+background-color: skyblue;
+}
+#handlebarPrac {
+  height: 450px;
+  width: 450px;
+  background-color: linen;
+}
+
+
+
+
+/*Side Dish Page*/
+#sidedishContainer {
+  height: 550px;
+  background-color: rgb(138, 235, 135);
+}
+
+#handlebarPrac {
+  height: 450px;
+  width: 450px;
+  background-color: linen;
+}
+
+
+
+
+
+
+
+
+
+/*Main Course Page*/
+#maincourseContainer {
+  height: 550px;
+  background-color: rgb(165, 135, 235);
+}#handlebarPrac {
+  height: 450px;
+  width: 450px;
+  background-color: linen;
+}
+
