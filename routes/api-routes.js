@@ -50,4 +50,8 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/recipes", (req, res) => {
+    res.json(recipeData);
+  });
 };
