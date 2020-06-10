@@ -1,0 +1,28 @@
+<h1>{{title}}</h1>
+
+{{#each rps}}
+<h1>Title: {{title}}</h1>
+<div class="photo-column">
+    <img src="{{image}}">
+</div>
+<p>ID: {{id}}</p>
+<div>
+    <h5>Missed Ingredients</h5>
+    <ul class="missed-ingredients">
+        {{#each missedIngredients}}
+        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
+            aisle: {{this.aisle}}
+        </li>
+        {{/each}}
+    </ul>
+    <h5>Used Ingredients</h5>
+    <ul class="used-ingredients">
+        {{#each usedIngredients}}
+        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
+            aisle: {{this.aisle}}
+        </li>
+        {{/each}}
+    </ul>
+</div>
+<hr>
+{{/each}}
