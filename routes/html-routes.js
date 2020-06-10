@@ -5,12 +5,10 @@ const fs = require("fs");
 // Requiring our custom middleware for checking if a user is logged in
 // const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-
 module.exports = function(app) {
   app.get("/", (req, res) => {
     res.render("index");
   });
-
 
   app.get("/rps", (req, res) => {
     res.render("rps");
@@ -33,8 +31,8 @@ module.exports = function(app) {
   });
   app.get("/maincourse", (req, res) => {
     res.render("maincourse");
-
-  app.get("/login", function(req, res) {
+  });
+  app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
     if (req.user) {
       res.redirect("/");
@@ -43,22 +41,19 @@ module.exports = function(app) {
   });
 
   app.get("/createAccount", (req, res) => {
-    if(req.user) {
+    if (req.user) {
       res.redirect("/");
-    }
-    else {
+    } else {
       res.sendFile(path.join(__dirname, "../public/createAccount.html"));
     }
   });
 
   app.get("/shopping", (req, res) => {
-    if(!req.user) {
+    if (!req.user) {
       res.redirect("/login");
-    }
-    else {
+    } else {
       res.render("shopping");
     }
-
   });
 
   app.get("/recipes", (req, res) => {
