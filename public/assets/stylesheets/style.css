@@ -112,6 +112,10 @@ background-color: skyblue;
   background-color: linen;
 }
 
+#recipeTile {
+  min-height: 300px;
+}
+
 
 
 

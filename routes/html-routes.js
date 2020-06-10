@@ -19,19 +19,63 @@ module.exports = function(app) {
   });
 
   app.get("/recipe", (req, res) => {
-    res.render("recipe");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("recipe", {
+        title: "My recipes!",
+        rps: recipes
+      });
+    });
   });
 
   app.get("/appetizers", (req, res) => {
-    res.render("appetizers");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("appetizers", {
+        title: "My recipes!",
+        rps: recipes
+      });
+    });
   });
 
   app.get("/sidedish", (req, res) => {
-    res.render("sidedish");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("sidedish", {
+        title: "My recipes!",
+        rps: recipes
+      });
+    });
   });
+
   app.get("/maincourse", (req, res) => {
-    res.render("maincourse");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("maincourse", {
+        title: "My recipes!",
+        rps: recipes
+      });
+    });
   });
+
+
+
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
     if (req.user) {
@@ -63,7 +107,7 @@ module.exports = function(app) {
       }
       // parse it so that it is an array
       const recipes = JSON.parse(data);
-      res.render("rps", {
+      res.render("recipe", {
         title: "My recipes!",
         rps: recipes
       });
