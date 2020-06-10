@@ -48,6 +48,19 @@ module.exports = function (app) {
     }
   });
 
+  // Get route for returning a user's shopping list
+  app.get("/api/shopping_list_data", function (req, res) {
+    db.ShoppingList.findAll({
+      where: {
+        userID: req.user.id
+      }
+    }
+    ).then(function (userShoppingList) {
+      console.log(req.user.firstName, "'s shopping list:");
+      res.json(userShoppingList);
+    });
+  });
+
 
   app.get("/api/recipes", (req, res) => {
     res.json(recipeData);
