@@ -10,8 +10,8 @@ module.exports = function(app) {
     res.render("index");
   });
 
-  app.get("/shopping", (req, res) => {
-    res.render("shopping");
+  app.get("/rps", (req, res) => {
+    res.render("rps");
   });
 
   app.get("/expiring", (req, res) => {
