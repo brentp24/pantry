@@ -1,3 +1,4 @@
+
 <nav>
     <div class="nav_text_field">
         <h1 class="nav_text"></h1>
@@ -8,6 +9,7 @@
         <a class="create_acc_btn" href="/createAccount">Create Account</button>
     </div>
 </nav>
+
 
 <div class="card">
     <div class="card-content2">
@@ -69,7 +71,7 @@
                             <div class="columns is-mobile">
                                 <div class="columns">
                                     <div class="column is-4">
-                                        <a href=""></a>
+                                        <a href="/recipes"></a>
                                         <img
                                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc">
                                     </div>
@@ -83,6 +85,14 @@
                                         <p class="subtitle"> Make meals delicous meals you never imagined.</p>
                                         <p class="subtitle"> Wow all of your meal guests with Pantree!</p>
 
+                                        <div class="col-md">
+                                            <h2>Burgers to Devour</h2>
+                                            <ol>
+                                                {{#each recipe}}
+                                                {{> recipes}}
+                                                {{/each}}
+                                            </ol>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -113,12 +123,14 @@
                                     <img
                                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI8BoscrJEUjADTjDpIvBtEBNu_YA3Y_cGpmGyI5ZsUdYjnpDy&usqp=CAU">
                                 </div>
-                                Dinner ideas gauranteed to please!
+                                Dinner ideas guaranteed to please!
                             </div>
                         </div>
                 </article>
             </div>
+
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/index.js"></script>
+
