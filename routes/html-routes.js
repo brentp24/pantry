@@ -11,6 +11,29 @@ module.exports = function(app) {
     res.render("index");
   });
 
+
+  app.get("/rps", (req, res) => {
+    res.render("rps");
+  });
+
+  app.get("/expiring", (req, res) => {
+    res.render("expiring");
+  });
+
+  app.get("/recipe", (req, res) => {
+    res.render("recipe");
+  });
+
+  app.get("/appetizers", (req, res) => {
+    res.render("appetizers");
+  });
+
+  app.get("/sidedish", (req, res) => {
+    res.render("sidedish");
+  });
+  app.get("/maincourse", (req, res) => {
+    res.render("maincourse");
+
   app.get("/login", function(req, res) {
     // If the user already has an account send them to the front page
     if (req.user) {
@@ -35,6 +58,7 @@ module.exports = function(app) {
     else {
       res.render("shopping");
     }
+
   });
 
   app.get("/recipes", (req, res) => {
