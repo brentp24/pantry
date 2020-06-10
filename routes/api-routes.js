@@ -2,30 +2,26 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    // Sending back a password, even a hashed password, isn't a good idea
-    res.json({
-      email: req.user.email,
-      id: req.user.id
-    });
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    res.json(req.user);
   });
 
-  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-  // otherwise send back an error
-  app.post("/api/signup", (req, res) => {
+  // Signing up for a new account
+  app.post("/api/signup", function (req, res) {
     db.User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     })
-      .then(() => {
+      .then(function () {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
+      .catch(function (err) {
         res.status(401).json(err);
       });
   });
@@ -37,17 +33,33 @@ module.exports = function(app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", (req, res) => {
+  app.get("/api/user_data", function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
+      // Otherwise send back the user's info (sans password)
       res.json({
-        email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        email: req.user.email
       });
     }
   });
+
+  // Get route for returning a user's shopping list
+  app.get("/api/shopping_list_data", function (req, res) {
+    db.ShoppingList.findAll({
+      where: {
+        userID: req.user.id
+      }
+    }
+    ).then(function (userShoppingList) {
+      console.log(req.user.firstName, "'s shopping list:");
+      res.json(userShoppingList);
+    });
+  });
+
+
 };

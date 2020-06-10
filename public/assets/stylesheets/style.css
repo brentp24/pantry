@@ -72,3 +72,20 @@ margin-left: 15px;
 /* .w3-container {
   margin-left: 450px;
 } */
+
+
+nav {
+  height: 40px;
+  background-color: lightsalmon;
+  color: white;
+}
+
+.nav_text_field {
+  float: left;
+  width: 30%;
+}
+
+.nav_btns {
+  float: right;
+  width: 60%;
+}
