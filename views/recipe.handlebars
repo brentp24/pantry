@@ -1,76 +1,74 @@
 <div id="navbarBasicExample" class="navbar-menu">
-    <div id="brand">
+  <div id="brand">
+    <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
+  </div>
+  <div class="navbar-start">
+    <a class="navbar-item" href="/">
+      Main Pantry
+    </a>
+    <a href="/shopping" class="navbar-item">
+      Shopping
+    </a>
+    <a href="/expiring" class="navbar-item">
+      Expiring
+    </a>
+    <a href="/recipe" class="navbar-item">
+      Recipes
+    </a>
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        Dinner
+      </a>
+      <div class="navbar-dropdown">
+        <a class="navbar-item" href="/appetizers">
+          Appetizers
+        </a>
+        <a class="navbar-item" href="/sidedish">
+          Side Dishes
+        </a>
+        <a class="navbar-item" href="/maincourse">
+          Main Course
+        </a>
+      </div>
+    </div>
+    <div id="brand2">
       <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
     </div>
-    <div class="navbar-start">
-      <a class="navbar-item" href="/">
-        Main Pantry
-      </a>
+  </div>
+</div>
 
-     <a href="/shopping" class="navbar-item">
-        Shopping
-      </a>
-     
-      <a href="/expiring" class="navbar-item">
-        Expiring
-      </a>
-    
-     
-      <a href="/recipe" class="navbar-item">
-        Recipes
-      </a>
+<div class="container">
+  <div class="notification" id="recipeContainer">
+    <h2 class="title is-2">Recipes</h2>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Dinner
-        </a>
+    <div class="container" id="handlebarPrac">
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="/appetizers">
-            Appetizers
-          </a>
-          <a class="navbar-item" href="/sidedish">
-            Side Dishes
-          </a>
-          <a class="navbar-item" href="/maincourse">
-            Main Course
-          </a>
-        </div>
-      </div>
-      <div id="brand2">
-        <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
-      </div>
+{{#each rps}}
+<h1>Title: {{title}}</h1>
+<div class="photo-column">
+    <img src="{{image}}">
+</div>
+<p>ID: {{id}}</p>
+<div>
+    <h5>Missed Ingredients</h5>
+    <ul class="missed-ingredients">
+        {{#each missedIngredients}}
+        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
+            aisle: {{this.aisle}}
+        </li>
+        {{/each}}
+    </ul>
+    <h5>Used Ingredients</h5>
+    <ul class="used-ingredients">
+        {{#each usedIngredients}}
+        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
+            aisle: {{this.aisle}}
+        </li>
+        {{/each}}
+    </ul>
+</div>
+<hr>
+{{/each}}
     </div>
   </div>
-
-
-
-
-
- <div class="container">
-  <div class="notification"  id="recipeContainer">
-<h2 class="title is-2">Recipes</h2>
-
-<div class="container" id="handlebarPrac">
-
-  <h1>Practice handlebars here</h1>
 </div>
-
-
-
-  </div>
-</div>
-
-
-
-
-<h1>{{recipe.name}}</h1>
-
-{{#each recipe.ingredients}}
-<ol>
-    <li>{{this}}</li>
-</ol>
-{{/each}}
-
-<hr>
-<a href="/recipes">Recipes</a>

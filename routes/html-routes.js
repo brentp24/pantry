@@ -19,34 +19,85 @@ module.exports = function(app) {
   });
 
   app.get("/recipe", (req, res) => {
-    res.render("recipe");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("recipe", {
+        title: "My recipes!",
+        rps: recipes
+      });
+    });
   });
 
   app.get("/appetizers", (req, res) => {
-    res.render("appetizers");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("appetizers", {
+        title: "My recipes!",
+        rps: recipes
+      });
+    });
   });
 
   app.get("/sidedish", (req, res) => {
-    res.render("sidedish");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("sidedish", {
+        title: "My recipes!",
+        rps: recipes
+      });
+    });
   });
+
   app.get("/maincourse", (req, res) => {
-    res.render("maincourse");
-
-    app.get("/login", (req, res) => {
-      // If the user already has an account send them to the front page
-      if (req.user) {
-        res.redirect("/");
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
       }
-      res.sendFile(path.join(__dirname, "../public/login.html"));
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("maincourse", {
+        title: "My recipes!",
+        rps: recipes
+      });
     });
+  });
 
-    app.get("/createAccount", (req, res) => {
-      if (req.user) {
-        res.redirect("/");
-      } else {
-        res.sendFile(path.join(__dirname, "../public/createAccount.html"));
-      }
-    });
+
+  app.get("/login", (req, res) => {
+    // If the user already has an account send them to the front page
+    if (req.user) {
+      res.redirect("/");
+    }
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+  app.get("/createAccount", (req, res) => {
+    if (req.user) {
+      res.redirect("/");
+    } else {
+      res.sendFile(path.join(__dirname, "../public/createAccount.html"));
+    }
+  });
+
+  app.get("/shopping", (req, res) => {
+    if (!req.user) {
+      res.redirect("/login");
+    } else {
+      res.render("shopping");
+    }
+  });
 
     app.get("/shopping", (req, res) => {
       if (!req.user) {

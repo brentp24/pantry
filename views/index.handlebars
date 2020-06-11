@@ -1,15 +1,13 @@
-
 <nav>
     <div class="nav_text_field">
         <h1 class="nav_text"></h1>
     </div>
     <div class="nav_btns">
         <a class="logout_btn" href="/logout">Logout</button>
-        <a class="login_btn" href="/login">Login</button>
-        <a class="create_acc_btn" href="/createAccount">Create Account</button>
+            <a class="login_btn" href="/login">Login</button>
+                <a class="create_acc_btn" href="/createAccount">Create Account</button>
     </div>
 </nav>
-
 
 <div class="card">
     <div class="card-content2">
@@ -17,6 +15,8 @@
             <div class="tile is-vertical is-9">
                 <div class="tile">
                     <div class="tile is-parent is-vertical">
+
+                        {{!-- Shopping --}}
                         <article class="tile is-child notification is-primary">
                             <a href="/rps">
                                 <div class="columns is-mobile">
@@ -29,6 +29,8 @@
                                             <p class="title">Shopping:</p>
                             </a>
                         </article>
+
+                        {{!-- Expiring --}}
                         <article class="tile is-child notification is-warning">
                             <div class="columns is-mobile">
                                 <div class="columns">
@@ -45,15 +47,36 @@
                                         </div>
                                         <!-- <a class="button is-centered" id="recipeButton">Button</a> -->
                                     </div>
-
                         </article>
+
                     </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child notification has-background-warning">
-                            <figure class="image is-5by4">
-                                <img src="assets/img/pantree_primary_logo.png">
-                            </figure>
+
+                    <div class="tile is-parent" >
+    
+                            <article class="tile is-child notification is-info" id="recipeTile">
+                                hi
+                                <div class="content">
+                                    <!-- <div class="card"> -->
+                                    <div class="columns is-mobile">
+                                        <div class="columns">
+                                            <div class="column is-4">
+                                                <a href="">
+                                                    <img
+                                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc">
+                                            </div>
+                                            <div class="column is-3">
+                                                <p class="title">Upload Your Own Recipes!</p>
+                                                </a>
+                                                <p class="subtitle"> Add your favorite recipes to PanTree!</p>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                
                     </div>
+
                 </div>
 
                 <div class="tile is-parent is-12" id="recipeTile">
@@ -63,140 +86,59 @@
                             <div class="columns is-mobile">
                                 <div class="columns">
                                     <div class="column is-4">
-                                        <a href="/recipes"></a>
-                                        <img
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc">
+                                        <a href="/recipe">
+                                            <img
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc">
+                                        </a>
                                     </div>
                                     <div class="column is-3">
-                                        <p class="title">Recipes:</p>
-                                        <p class="subtitle"> Search for 1000s of yummy recipes with PanTree!</p>
+                                        <p class="title">Find Recipes</p>
+                                        <p class="subtitle"> Search for 1000s of yummy recipes with items in your
+                                            pantree!</p>
                                         <br>
                                     </div>
                                     <div class="column is-4">
                                         <p class="subtitle"> Discover new recipes.</p>
                                         <p class="subtitle"> Make meals delicous meals you never imagined.</p>
                                         <p class="subtitle"> Wow all of your meal guests with Pantree!</p>
-
-                                        <div class="col-md">
-                                            <h2>Burgers to Devour</h2>
-                                            <ol>
-                                                {{#each recipe}}
-                                                {{> recipes}}
-                                                {{/each}}
-                                            </ol>
-                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-                            <!-- <a class="button is-centered" id="recipeButton">Button</a> -->
-                    </div>
+                        </div>
                 </div>
             </div>
 
             <div class="tile is-parent" id="mealTile">
                 <article class="tile is-child notification is-success">
                     <div class="content">
-                        >
                         <div class="content">
                             <div class="meal-choices" id="mealChoices">
-                                <div class="breakfast-pic" id="BreakfastPic">
-                                    <a href=""></a>
-                                    <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWwr1lZriiW_zCwV77w-fgwnT9ANKqvb47z9UF65RctOlgcXF1&usqp=CAU">
-                                    Breakfast Ideas to start the day off!
+                                Start any meal off with great appetizers!
+                                <div class="app-pic" id="appetizerPic">
+                                    <a href="/appetizers">
+                                        <img
+                                            src=" https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9jS2-VH34DXZgp0UAOUz5ZbOlSO43XfqdryO__KiAEfAKVOSw&usqp=CAU            ">
+                                    </a>
                                 </div>
-                                <div class="lunh-pic" id="lunchPic">
-                                    <a href=""></a>
-                                    <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRMiTJXMPq_O6yk_gFKd9p1TCEndq65etMtTgC9hKV7NEs5ncpg&usqp=CAU">
-                                    Quick and yummy Lunch Ideas!
-                                </div>
-                                <div class="dinner-pic" id="dinnerPic">
-                                    <a href=""></a>
-                                    <img
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI8BoscrJEUjADTjDpIvBtEBNu_YA3Y_cGpmGyI5ZsUdYjnpDy&usqp=CAU">
+                                Side dishes that compliment any main course!
+                                <div class="side-pic" id="sidePic">
+                                    <a href="/sidedish">
+                                        <img
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTAj0fkD7SCfNunYtDi5DYuboH22GInFUu7b98uAhYglJObl-6c&usqp=CAU     ">
+                                    </a>
                                 </div>
                                 Dinner ideas guaranteed to please!
+                                <div class="dinner-pic" id="dinnerPic">
+                                    <a href="/maincourse">
+                                        <img
+                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI8BoscrJEUjADTjDpIvBtEBNu_YA3Y_cGpmGyI5ZsUdYjnpDy&usqp=CAU">
+                                    </a>
+                                </div>
                             </div>
                             <!-- <a class="button is-centered" id="recipeButton">Button</a> -->
                         </div>
+                </article>
 
-            </article>
-        </div>
-        <div class="tile is-parent">
-            <article class="tile is-child notification has-background-warning">
-                <figure class="image is-5by4">
-                    <img src="assets/img/pantree_primary_logo.png">
-                </figure>
-        </div>
-    </div>
-
-    <div class="tile is-parent is-12" id="recipeTile">
-        <article class="tile is-child notification is-info">
-            <div class="content">
-                <!-- <div class="card"> -->
-                <div class="columns is-mobile">
-                    <div class="columns">
-                        <div class="column is-4">
-                            <a href="/recipe">
-                                <img
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc">
-                        </div>
-                        <div class="column is-3">
-                            <p class="title">Recipes:</p>
-                            </a>
-                            <p class="subtitle"> Add your favorite recipes to PanTree!</p>
-                            <br>
-                        </div>
-                        <div class="column is-4">
-                            <p class="subtitle"> Discover new recipes.</p>
-                            <p class="subtitle"> Make meals delicous meals you never imagined.</p>
-                            <p class="subtitle"> Wow all of your meal guests with Pantree!</p>
-
-                        </div>
-                    </div>
-                </div>
-        </article>
-    </div>
-</div>
-
-<div class="tile is-parent" id="mealTile">
-    <article class="tile is-child notification is-success">
-        <div class="content">
-
-            <div class="content">
-                <div class="meal-choices" id="mealChoices">
-                    <div class="app-pic" id="appetizerPic">
-                        <a href="/appetizers">
-                            <img
-                                src=" https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9jS2-VH34DXZgp0UAOUz5ZbOlSO43XfqdryO__KiAEfAKVOSw&usqp=CAU            ">
-                        </a>
-                        Start any meal off with great appetizers!
-                    </div>
-                    <div class="side-pic" id="sidePic">
-                        <a href="/sidedish">
-                            <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTAj0fkD7SCfNunYtDi5DYuboH22GInFUu7b98uAhYglJObl-6c&usqp=CAU     ">
-                        </a>
-                        Side dishes that compliment any main course!
-                    </div>
-                    <div class="dinner-pic" id="dinnerPic">
-                        <a href="/maincourse">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI8BoscrJEUjADTjDpIvBtEBNu_YA3Y_cGpmGyI5ZsUdYjnpDy&usqp=CAU">
-                        </a>
-                    </div>
-                    Dinner ideas gauranteed to please!
-                </div>
             </div>
-
-    </article>
-</div>
-</div>
-
         </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/index.js"></script>
-
-
