@@ -8,9 +8,9 @@ $(document).ready(function() {
         }
         else {
             $(".nav_text").text(`Welcome, ${data.firstName}!`);
-            $(".signin_btn").hide();
+            $(".login_btn").hide();
             $(".create_acc_btn").hide();
         }
     });
-  });
+});
   

@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 // Requiring our custom middleware for checking if a user is logged in
-// const isAuthenticated = require("../config/middleware/isAuthenticated");
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -122,4 +122,9 @@ module.exports = function(app) {
       recipe
     });
   });
+
+  app.get("/addrecipes", (req, res) => {
+    res.render("addrecipes");
+  });
+
 };
