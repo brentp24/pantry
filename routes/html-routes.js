@@ -74,7 +74,6 @@ module.exports = function(app) {
     });
   });
 
-
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
     if (req.user) {
@@ -99,35 +98,34 @@ module.exports = function(app) {
     }
   });
 
-    app.get("/shopping", (req, res) => {
-      if (!req.user) {
-        res.redirect("/login");
-      } else {
-        res.render("shopping");
+  app.get("/shopping", (req, res) => {
+    if (!req.user) {
+      res.redirect("/login");
+    } else {
+      res.render("shopping");
+    }
+  });
+
+  app.get("/recipes", (req, res) => {
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
       }
-    });
-
-    app.get("/recipes", (req, res) => {
-      fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-        if (err) {
-          console.log(err);
-        }
-        // parse it so that it is an array
-        const recipes = JSON.parse(data);
-        res.render("rps", {
-          title: "My recipes!",
-          rps: recipes
-        });
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("rps", {
+        title: "My recipes!",
+        rps: recipes
       });
     });
+  });
 
-    app.get("/recipe/:id", (req, res) => {
-      const id = parseInt(req.params.id);
-      const recipe = recipes.find(x => x.id === id);
+  app.get("/recipe/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const recipe = recipes.find(x => x.id === id);
 
-      res.render("recipe", {
-        recipe
-      });
+    res.render("recipe", {
+      recipe
     });
   });
 };
