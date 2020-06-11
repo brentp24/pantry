@@ -99,14 +99,6 @@ module.exports = function(app) {
     }
   });
 
-    app.get("/shopping", (req, res) => {
-      if (!req.user) {
-        res.redirect("/login");
-      } else {
-        res.render("shopping");
-      }
-    });
-
     app.get("/recipes", (req, res) => {
       fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
         if (err) {
