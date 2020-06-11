@@ -1,6 +1,8 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -65,5 +67,30 @@ module.exports = function (app) {
   app.get("/api/recipes", (req, res) => {
     res.json(recipeData);
   });
+
+
+    // Get route for returning product search results
+    app.get("/search_product", function(req, res) {
+      var searchedProduct = req.query.product;
+      // Capitalizing the first letter of a searched product
+      searchedProduct = searchedProduct.charAt(0).toUpperCase() + searchedProduct.slice(1)
+
+      db.Item.findAll({
+        where: {
+          itemName: {
+            [Op.like]: "%" + searchedProduct + "%"
+          }
+        }
+      }).then(function(products) {
+        if(products == "[]") {
+          console.log("Item not found.");
+        }
+        // var { Item } = products;
+        console.log({ products });
+        console.log(products);
+        res.render("shopping", products); // possibly wrap the products in {}
+      });
+    });
+
 
 };
