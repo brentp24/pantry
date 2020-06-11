@@ -98,27 +98,21 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/shopping", (req, res) => {
-    if (!req.user) {
-      res.redirect("/login");
-    } else {
-      res.render("shopping");
-    }
-  });
 
-  app.get("/recipes", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("rps", {
-        title: "My recipes!",
-        rps: recipes
+    app.get("/recipes", (req, res) => {
+      fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+        if (err) {
+          console.log(err);
+        }
+        // parse it so that it is an array
+        const recipes = JSON.parse(data);
+        res.render("rps", {
+          title: "My recipes!",
+          rps: recipes
+        });
       });
     });
-  });
+  
 
   app.get("/recipe/:id", (req, res) => {
     const id = parseInt(req.params.id);
