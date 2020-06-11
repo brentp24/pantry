@@ -74,7 +74,6 @@ module.exports = function(app) {
     });
   });
 
-
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
     if (req.user) {
@@ -99,6 +98,7 @@ module.exports = function(app) {
     }
   });
 
+
     app.get("/recipes", (req, res) => {
       fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
         if (err) {
@@ -112,14 +112,14 @@ module.exports = function(app) {
         });
       });
     });
+  
 
-    app.get("/recipe/:id", (req, res) => {
-      const id = parseInt(req.params.id);
-      const recipe = recipes.find(x => x.id === id);
+  app.get("/recipe/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const recipe = recipes.find(x => x.id === id);
 
-      res.render("recipe", {
-        recipe
-      });
+    res.render("recipe", {
+      recipe
     });
   });
 };
