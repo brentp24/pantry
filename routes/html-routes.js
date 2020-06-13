@@ -28,7 +28,6 @@ module.exports = function (app) {
       // parse it so that it is an array
       const recipes = JSON.parse(data);
       res.render("recipe", {
-        title: "My recipes!",
         rps: recipes
       });
     });
@@ -136,8 +135,6 @@ module.exports = function (app) {
     }
   });
 
-
-
   app.get("/recipes", (req, res) => {
     fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
       if (err) {
@@ -153,6 +150,10 @@ module.exports = function (app) {
   });
 
 
+
+
+
+
   app.get("/recipe/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const recipe = recipes.find(x => x.id === id);
@@ -165,5 +166,4 @@ module.exports = function (app) {
   app.get("/addrecipes", (req, res) => {
     res.render("addrecipes");
   });
-
 };

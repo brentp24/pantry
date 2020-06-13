@@ -4,26 +4,26 @@ const passport = require("../config/passport");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local"), function (req, res) {
+  app.post("/api/login", passport.authenticate("local"), (req, res) => {
     res.json(req.user);
   });
 
   // Signing up for a new account
-  app.post("/api/signup", function (req, res) {
+  app.post("/api/signup", (req, res) => {
     db.User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password
     })
-      .then(function () {
+      .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(function (err) {
+      .catch(err => {
         res.status(401).json(err);
       });
   });
@@ -35,7 +35,7 @@ module.exports = function (app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function (req, res) {
+  app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -51,7 +51,7 @@ module.exports = function (app) {
   });
 
   // Get route for returning a user's shopping list
-  app.get("/api/shopping_list_data", function (req, res) {
+  app.get("/api/shopping_list_data", (req, res) => {
     db.ShoppingList.findAll({
       where: {
         userID: req.user.id
@@ -59,10 +59,10 @@ module.exports = function (app) {
     }
     ).then(function (userShoppingList) {
       // console.log(req.user.firstName, "'s shopping list:");
+
       res.json(userShoppingList);
     });
   });
-
 
   app.get("/api/recipes", (req, res) => {
     res.json(recipeData);
@@ -74,6 +74,7 @@ module.exports = function (app) {
     var searchedProduct = req.query.product;
     // Capitalizing the first letter of a searched product
     searchedProduct = searchedProduct.charAt(0).toUpperCase() + searchedProduct.slice(1)
+
 
     db.Item.findAll({
       where: {
@@ -370,7 +371,6 @@ module.exports = function (app) {
     res.redirect("/pantree");
 
   });
-
 
 
 

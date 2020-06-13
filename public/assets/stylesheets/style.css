@@ -86,8 +86,8 @@ margin-left: 15px;
 
 /*Recipe Page*/
 #recipeContainer {
-  height:550px;
-  background-color: paleturquoise;
+  /* height:550px; */
+  background-color: linen
 }
 #handlebarPrac {
   height: 450px;
@@ -95,15 +95,9 @@ margin-left: 15px;
   background-color: linen;
 }
 
-
-/*Shopping Page*/
-#shoppingContainer {
-
-}
-
 /*Appetizers Page*/
 #appetizersContainer {
-height: 550px;
+/* height: 550px; */
 background-color: skyblue;
 }
 #handlebarPrac {
@@ -113,7 +107,7 @@ background-color: skyblue;
 }
 
 #recipeTile {
-  min-height: 300px;
+  min-height: 400px;
 }
 
 
@@ -121,7 +115,6 @@ background-color: skyblue;
 
 /*Side Dish Page*/
 #sidedishContainer {
-  height: 550px;
   background-color: rgb(138, 235, 135);
 }
 
@@ -134,9 +127,10 @@ background-color: skyblue;
 
 /*Main Course Page*/
 #maincourseContainer {
-  height: 550px;
   background-color: rgb(165, 135, 235);
-}#handlebarPrac {
+}
+
+#handlebarPrac {
   height: 450px;
   width: 450px;
   background-color: linen;
