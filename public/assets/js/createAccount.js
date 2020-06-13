@@ -17,7 +17,7 @@ $(document).ready(() => {
       password: passwordInput.val().trim()
     };
 
-    if (
+    
     if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
       return;
 

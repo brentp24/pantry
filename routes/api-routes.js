@@ -83,15 +83,6 @@ module.exports = function(app) {
         }
       }
     }).then(function (products) {
-      // console.log({ products });
-      // console.log(products);
-
-      // var productsFound = { products };
-      // console.log("==============");
-      // var productObj = { products };
-      // console.log(Object.keys(products).length);
-      // console.log(products[0].dataValues.itemName);
-      // console.log("==============");
 
       if (Object.keys(products).length < 1) {
         console.log("Item not found.");
@@ -100,7 +91,6 @@ module.exports = function(app) {
             userID: req.user.id
           }
         }).then(function (userShoppingList) {
-          // console.log(req.user.firstName, "'s shopping list:");
           res.render("shopping", {
             start: false,
             status: false,
@@ -111,20 +101,12 @@ module.exports = function(app) {
       }
 
       else {
-        // var productsFound = {
-        //   start: false,
-        //   status: true,
-        //   productsFound: products.map(products => products.toJSON())
-        // }
-
-        // res.render("shopping", productsFound);
 
         db.ShoppingList.findAll({
           where: {
             userID: req.user.id
           }
         }).then(function (userShoppingList) {
-          // console.log(req.user.firstName, "'s shopping list:");
           res.render("shopping", {
             start: false,
             status: true,
@@ -139,13 +121,7 @@ module.exports = function(app) {
 
 
   app.get("/add_to_shopping_list", function (req, res) {
-    // console.log("Testing checklist form!");
-    // console.log(req.query);
     var productsSelected = req.query;
-    // console.log("==============");
-    // console.log(req.user.id);
-    // console.log("==============");
-    // console.log(Object.keys(productsSelected).length);
 
     if (Object.keys(productsSelected).length < 1) {
       console.log("No items selected");
@@ -153,9 +129,7 @@ module.exports = function(app) {
     }
 
     console.log("==============");
-    // console.log(Object.values(productsSelected)[0]);
     for (var i = 0; i < Object.keys(productsSelected).length; i++) {
-      // console.log("Search at index ", Object.values(productsSelected)[i]);
       db.Item.findAll({
         where: {
           id: Object.values(productsSelected)[i]
@@ -167,13 +141,6 @@ module.exports = function(app) {
           itemFound: itemFound.map(itemFound => itemFound.toJSON())
         }
 
-        // console.log(item.itemFound);
-        // console.log("id = ", item.itemFound[0].id);
-        // console.log("itemName = ", item.itemFound[0].itemName);
-        // console.log("category = ", item.itemFound[0].category);
-        // console.log("clipartURL = ", item.itemFound[0].clipartURL);
-        // console.log("userID = ", req.user.id);
-
         db.ShoppingList.create({
           itemName: item.itemFound[0].itemName,
           itemID: item.itemFound[0].id,
@@ -181,25 +148,13 @@ module.exports = function(app) {
           clipartURL: item.itemFound[0].clipartURL,
           userID: req.user.id
         }).then(function () {
-          db.ShoppingList.findAll({
-            where: {
-              userID: req.user.id
-            }
-          }).then(function (userShoppingList) {
-            // console.log(req.user.firstName, "'s shopping list:");
-            res.render("shopping", {
-              start: true,
-              userShoppingList: userShoppingList.map(userShoppingList => userShoppingList.toJSON())
-            });
-          });
+          console.log("Added at index ", Object.values(productsSelected)[i]);
+          res.redirect("/shopping");
         });
-
+        
       });
     }
-    console.log("==============");
-
-
-    // res.render("shopping", { start: true });
+    
 
   });
 
@@ -207,8 +162,6 @@ module.exports = function(app) {
   app.get("/shopping_list_to_pantree", function (req, res) {
 
     var productsSelected = req.query;
-    // console.log(req.query);
-    // console.log("length = ", Object.keys(productsSelected).length);
 
     if (Object.keys(productsSelected).length < 1) {
       console.log("No items selected");
@@ -227,8 +180,6 @@ module.exports = function(app) {
           itemToMove: itemToMove.map(itemToMove => itemToMove.toJSON())
         }
 
-        // console.log(item);
-
         db.Item.findAll({
           where: {
             id: item.itemToMove[0].itemID
@@ -246,12 +197,12 @@ module.exports = function(app) {
             expirationDate: "01/01/2021", // Just temporarily set to fixed date
             clipartURL: item.itemMatch[0].clipartURL,
             userID: req.user.id
-          }).then(function () {
-            res.redirect("/shopping");
-          });
+          })
         });
       });
     };
+    res.redirect("/shopping");
+
   });
 
 
@@ -331,7 +282,7 @@ module.exports = function(app) {
           itemName: item.itemFound[0].itemName,
           itemID: item.itemFound[0].id,
           category: item.itemFound[0].category,
-          expirationDate: "01/01/2021",
+          expirationDate: "01/01/2021", // Temporary value
           clipartURL: item.itemFound[0].clipartURL,
           userID: req.user.id
         }).then(function () {
@@ -339,18 +290,14 @@ module.exports = function(app) {
             where: {
               userID: req.user.id
             }
-          }).then(function (userPantree) {
-            res.render("pantree", {
-              start: true,
-              userPantree: userPantree.map(userPantree => userPantree.toJSON())
-            });
+          })
+          .then(function (userPantree) {
+            res.redirect("/pantree");
           });
         });
-
       });
     };
   });
-
 
 
   // Make recipe search from the pantree
@@ -373,12 +320,5 @@ module.exports = function(app) {
     res.redirect("/pantree");
 
   });
-
-
-
-
-
-
-};
 
 
