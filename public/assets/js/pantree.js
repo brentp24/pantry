@@ -1,4 +1,4 @@
-const select = document.getElementById("selectCuisine");
+const selectCuisine = document.getElementById("selectCuisine");
 const cuisineOptions = [
   "African",
   "American",
@@ -30,11 +30,10 @@ const cuisineOptions = [
 
 for (let i = 0; i < cuisineOptions.length; i++) {
   const cOpt = cuisineOptions[i];
-  const cEl = document.createElement("a");
+  const cEl = document.createElement("option");
   cEl.textContent = cOpt;
   cEl.value = cOpt;
-  cEl.className = "navbar-item";
-  select.appendChild(cEl);
+  selectCuisine.appendChild(cEl);
 }
 
 const selectType = document.getElementById("selectType");

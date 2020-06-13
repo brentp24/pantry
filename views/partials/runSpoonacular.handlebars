@@ -1,17 +1,13 @@
 <div class="columns">
     <div class="column">
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                Cuisine
-            </a>
-            <div class="navbar-dropdown" id="selectCuisine">
-                <a class="navbar-item" value="null">
-                    All cuisines
-                </a>
-
-            </div>
+        Cuisine
+        <div class="select">
+            <select id="selectCuisine">
+                <option value="null">All cuisines</option>
+            </select>
         </div>
     </div>
+
     <div class="column">
         <div> Number of Results
             <input class="input" type="number" placeholder="i.e. 5">
@@ -22,7 +18,7 @@
             <a class="navbar-link">
                 Selection Criteria
             </a>
-            <div class="navbar-dropdown" id="selectCuisine">
+            <div class="navbar-dropdown" id="selectCriteria">
                 <a class="navbar-item" value="1">
                     Maximize Pantree ingredients
                 </a>
@@ -60,6 +56,6 @@
         </div>
     </div>
     <div class="column">
-<input class="button" type="submit" value="Search Recipes">
+        <input class="button" type="submit" value="Search Recipes">
     </div>
 </div>
