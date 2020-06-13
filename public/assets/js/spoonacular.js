@@ -5,14 +5,16 @@ const { document } = new JSDOM("").window;
 global.document = document;
 const $ = (jQuery = require("jquery")(window));
 const fs = require("fs");
+
 requestObject = {
   apikey: "527c6d48a93a43bf8f435bcfd7846114",
   ingredients: "cheese,flour,apples",
   limitLicense: true,
-  cuisine: "italian",
+  cuisine: "american",
   number: 5,
   ranking: 1,
-  ignorePantry: true
+  ignorePantry: true,
+  type: "main course"
 };
 
 module.exports = function getRecipes(
@@ -44,6 +46,7 @@ module.exports = function getRecipes(
       number,
     method: "GET"
   }).then(response => {
+    console.log("ran spoonacular");
     recipeData = response;
     fs.writeFile(
       __dirname + "../../../../db/db.json",
