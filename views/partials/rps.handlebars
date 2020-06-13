@@ -1,28 +1,49 @@
-<h1>{{title}}</h1>
-
 {{#each rps}}
-<h1>Title: {{title}}</h1>
-<div class="photo-column">
-    <img src="{{image}}">
+<div class="card notification is-info is-light">
+    <div class="columns">
+
+        <div class="column">
+            <div class="title is-4">{{title}}</div>
+            <div class="tile-image">
+                <figure class="image is-4by3">
+                    <img src="{{image}}">
+                </figure>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="title is-5">Ingredients</div>
+            <table class="used-ingredients table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Pantree</th>
+                        <th>Item      </th>
+                        <th>Qty</th>
+                        <th>Unit</th>
+                        <th>Aisle</th>
+                    </tr>
+                </thead>
+                {{#each usedIngredients}}
+                <tr>
+                    <td class="is-light">Yes </td>
+                    <td>{{this.originalName}} </td>
+                    <td>{{this.amount}}</td>
+                    <td>{{this.unit}}</td>
+                    <td>{{this.aisle}}</td>
+                </tr>
+                {{/each}}
+                {{#each missedIngredients}}
+                <tr>
+                    <td class="is-dark">No </td>
+                    <td>{{this.originalName}} </td>
+                    <td>{{this.amount}}</td>
+                    <td>{{this.unit}}</td>
+                    <td>{{this.aisle}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+
 </div>
-<p>ID: {{id}}</p>
-<div>
-    <h5>Missed Ingredients</h5>
-    <ul class="missed-ingredients">
-        {{#each missedIngredients}}
-        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
-            aisle: {{this.aisle}}
-        </li>
-        {{/each}}
-    </ul>
-    <h5>Used Ingredients</h5>
-    <ul class="used-ingredients">
-        {{#each usedIngredients}}
-        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
-            aisle: {{this.aisle}}
-        </li>
-        {{/each}}
-    </ul>
-</div>
-<hr>
 {{/each}}

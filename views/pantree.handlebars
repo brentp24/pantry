@@ -1,0 +1,39 @@
+    <h1>PANTREE</h1>
+
+    <section class="productSearchSection">
+      <h2>Search for products to add to your Pantree:</h2>
+      <form action="/search_product_pantree">
+        <input type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+
+  {{#unless start}}
+    {{#unless status}}
+      <p>Item not found.</p>
+    {{/unless}}
+
+    {{#if status}}
+    <form action="/add_to_pantree">
+      {{#each productsFound}}
+        <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-shelfLife="{{selfLife}}" data-clipartURL="{{clipartURL}}">
+        <label for="{{itemName}}">{{itemName}}</label>
+        <br>
+      {{/each}}
+      <input type="submit" value="Add to Pantree">
+    </form>
+    {{/if}}
+  {{/unless}}
+
+
+  <h2>Pantree</h2>
+
+  <form action="/pantree_recipe_search">
+    {{#each userPantree}}
+      <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-clipartURL="{{clipartURL}}">
+      <label for="{{itemName}}">{{itemName}}</label>
+      <br>
+    {{/each}}
+    <input type="submit" value="Search Recipes">
+  </form>

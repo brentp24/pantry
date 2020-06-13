@@ -42,23 +42,66 @@
   <h1>Grocery List</h1>
 
     <!-- Search Bar -->
-    <section class="productSearchSection">
+    {{!-- <section class="productSearchSection">
       <h2>Add products to your shopping list:</h2>
-      <form action="/search_product">
+      <form class="productSearchBar">
+        <input id="productSearhed" type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
+        <button type="submit">Search</button>
+      </form>
+    </section> --}}
+
+    <section class="productSearchSection">
+      <h2>Search for products to add to your shopping list:</h2>
+      <form action="/search_product_shopping">
         <input type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
+        <button type="submit">Search</button>
       </form>
     </section>
 
     {{!-- {{#if products}} --}}
-    <ul>
+    {{!-- <ul>
       <li>test</li>
+      <li>{{ products }}</li>
       {{#each products}}
         <li>
           {{itemName}}
         </li>
       {{/each}}
-    </ul>
+    </ul> --}}
   {{!-- {{/if}} --}}
+
+
+  {{#unless start}}
+    {{#unless status}}
+      <p>Item not found.</p>
+    {{/unless}}
+
+    {{#if status}}
+    <form action="/add_to_shopping_list">
+      {{#each productsFound}}
+        <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-shelfLife="{{selfLife}}" data-clipartURL="{{clipartURL}}">
+        <label for="{{itemName}}">{{itemName}}</label>
+        <br>
+      {{/each}}
+      <input type="submit" value="Add to Shopping List">
+    </form>
+    {{/if}}
+  {{/unless}}
+
+
+  <h2>Shopping List</h2>
+
+  <form action="/shopping_list_to_pantree">
+    {{#each userShoppingList}}
+      <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-clipartURL="{{clipartURL}}">
+      <label for="{{itemName}}">{{itemName}}</label>
+      <br>
+    {{/each}}
+    <input type="submit" value="Add to Pantree">
+  </form>
+  
+
+
 
   <table class="pure-table">
     <thead>
@@ -230,4 +273,4 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/shopping.js"></script>
+{{!-- <script type="text/javascript" src="/assets/js/shopping.js"></script> --}}

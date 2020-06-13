@@ -84,11 +84,14 @@ margin-left: 15px;
 }
 
 
-/*Recipe Page*/
+/*Recipe Page
 .notification {
   width:90%;
   height: 100%;
   background-color: paleturquoise;
+#recipeContainer {
+  /* height:550px; */
+  background-color: linen
 }
 #recipeCard {
   background-color: rgb(185, 183, 183);
@@ -117,15 +120,13 @@ li {
 
 
 
-
-/*Shopping Page*/
-#shoppingContainer {
-
-}
-
 /*Appetizers Page*/
 #appetizersContainer {
+
 height: 250px;
+
+/* height: 550px; */
+
 background-color: skyblue;
 }
 #handlebarPrac {
@@ -135,7 +136,7 @@ background-color: skyblue;
 }
 
 #recipeTile {
-  min-height: 300px;
+  min-height: 400px;
 }
 
 
@@ -143,7 +144,6 @@ background-color: skyblue;
 
 /*Side Dish Page*/
 #sidedishContainer {
-  height: 550px;
   background-color: rgb(138, 235, 135);
 }
 
@@ -156,9 +156,10 @@ background-color: skyblue;
 
 /*Main Course Page*/
 #maincourseContainer {
-  height: 550px;
   background-color: rgb(165, 135, 235);
-}#handlebarPrac {
+}
+
+#handlebarPrac {
   height: 450px;
   width: 450px;
   background-color: linen;
