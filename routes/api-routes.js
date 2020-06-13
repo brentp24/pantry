@@ -250,6 +250,8 @@ module.exports = function(app) {
         });
       }
     });
+
+
   });
 
 
@@ -318,8 +320,5 @@ module.exports = function(app) {
     res.redirect("/pantree");
 
   });
-
-
-};
 
 

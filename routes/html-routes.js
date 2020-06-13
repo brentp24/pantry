@@ -20,6 +20,19 @@ module.exports = function (app) {
     res.render("expiring");
   });
 
+
+  app.get("/login", (req, res) => {
+    res.render("login");
+  });
+  app.get("/createAccount", (req, res) => {
+    res.render("createAccount");
+  });
+  app.get("/homepage", (req, res) => {
+    res.render("homepage");
+  });
+
+
+
   app.get("/recipe", (req, res) => {
     fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
       if (err) {
@@ -78,18 +91,11 @@ module.exports = function (app) {
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
     if (req.user) {
-      res.redirect("/");
+      res.redirect("/homepage");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
-  app.get("/createAccount", (req, res) => {
-    if (req.user) {
-      res.redirect("/");
-    } else {
-      res.sendFile(path.join(__dirname, "../public/createAccount.html"));
-    }
-  });
 
   app.get("/shopping", (req, res) => {
     if (!req.user) {
@@ -113,6 +119,8 @@ module.exports = function (app) {
     }
   });
 
+
+  
   app.get("/pantree", (req, res) => {
     if (!req.user) {
       res.redirect("/login");
@@ -131,6 +139,7 @@ module.exports = function (app) {
           start: true,
           userPantree: userPantree.map(userPantree => userPantree.toJSON())
         });
+
       });
     }
   });
@@ -148,9 +157,6 @@ module.exports = function (app) {
       });
     });
   });
-
-
-
 
 
 
