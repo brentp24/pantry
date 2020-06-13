@@ -5,7 +5,7 @@ const fs = require("fs");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get("/", (req, res) => {
     res.render("index");
   });
@@ -17,6 +17,19 @@ module.exports = function(app) {
   app.get("/expiring", (req, res) => {
     res.render("expiring");
   });
+
+
+  app.get("/login", (req, res) => {
+    res.render("login");
+  });
+  app.get("/createAccount", (req, res) => {
+    res.render("createAccount");
+  });
+  app.get("/homepage", (req, res) => {
+    res.render("homepage");
+  });
+
+
 
   app.get("/recipe", (req, res) => {
     fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
@@ -77,18 +90,11 @@ module.exports = function(app) {
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
     if (req.user) {
-      res.redirect("/");
+      res.redirect("/homepage");
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
-  app.get("/createAccount", (req, res) => {
-    if (req.user) {
-      res.redirect("/");
-    } else {
-      res.sendFile(path.join(__dirname, "../public/createAccount.html"));
-    }
-  });
 
   app.get("/shopping", (req, res) => {
     if (!req.user) {
@@ -98,21 +104,20 @@ module.exports = function(app) {
     }
   });
 
-
-    app.get("/recipes", (req, res) => {
-      fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-        if (err) {
-          console.log(err);
-        }
-        // parse it so that it is an array
-        const recipes = JSON.parse(data);
-        res.render("rps", {
-          title: "My recipes!",
-          rps: recipes
-        });
+  app.get("/recipes", (req, res) => {
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("rps", {
+        title: "My recipes!",
+        rps: recipes
       });
     });
-  
+  });
+
 
   app.get("/recipe/:id", (req, res) => {
     const id = parseInt(req.params.id);

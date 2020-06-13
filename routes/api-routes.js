@@ -91,6 +91,4 @@ module.exports = function (app) {
         res.render("shopping", products); // possibly wrap the products in {}
       });
     });
-
-
 };
