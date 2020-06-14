@@ -39,18 +39,18 @@
 
 <div class="container">
   <div class="notification" id="recipeContainer">
-    <h2 class="title is-2">Recipes</h2>
+   <div class="card" id="recipeCard">
+    <h2 class="title is-2"> Recipes</h2>
 
-    <div class="container" id="handlebarPrac">
 
 {{#each rps}}
-<h1>Title: {{title}}</h1>
+<h1> {{title}}</h1>
 <div class="photo-column">
     <img src="{{image}}">
 </div>
-<p>ID: {{id}}</p>
+{{!-- <p>ID: {{id}}</p> --}}
 <div>
-    <h5>Missed Ingredients</h5>
+    <h5>Missing Ingredients</h5>
     <ul class="missed-ingredients">
         {{#each missedIngredients}}
         <li>{{this.originalName}} {{this.amount}} {{this.unit}}
@@ -71,4 +71,9 @@
 {{/each}}
     </div>
   </div>
+  </div>
+<div id="recipeContainer">
+  <div class="title is-4">Recipes</div>
+    {{> rps}}
+
 </div>

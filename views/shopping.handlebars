@@ -1,46 +1,6 @@
 <div id="navbarBasicExample" class="navbar-menu">
 
-    <div id="brand">
-      <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
-    </div>
-    <div class="navbar-start">
-      <a class="navbar-item" href="/">
-        Main Pantry
-      </a>
-
-     <a href="/shopping" class="navbar-item">
-        Shopping
-      </a>
-     
-      <a href="/expiring" class="navbar-item">
-        Expiring
-      </a>
-    
-     
-      <a href="/recipe" class="navbar-item">
-        Recipes
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Dinner
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="/appetizers">
-            Appetizers
-          </a>
-          <a class="navbar-item" href="/sidedish">
-            Side Dishes
-          </a>
-          <a class="navbar-item" href="/maincourse">
-            Main Course
-          </a>
-        </div>
-      </div>
-      <div id="brand2">
-        <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
-  <div id="brand">
+<div id="brand">
     <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
   </div>
   <div class="navbar-start">
@@ -79,33 +39,70 @@
   </div>
 
  <div class="container" id="shoppingContainer">
- 
-
-    <h1>Grocery List</h1>
-    <table class="pure-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Item</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>
-            <div class="pure-control-group">
-              <label for="aligned-foo"></label>
-              <input type="text" id="aligned-foo" placeholder="Item" />
-            </div>
-          </td>
-          <td>
-</div>
-
-
-
-<div class="w3-container w3-teal">
   <h1>Grocery List</h1>
+
+    <!-- Search Bar -->
+    {{!-- <section class="productSearchSection">
+      <h2>Add products to your shopping list:</h2>
+      <form class="productSearchBar">
+        <input id="productSearhed" type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
+        <button type="submit">Search</button>
+      </form>
+    </section> --}}
+
+    <section class="productSearchSection">
+      <h2>Search for products to add to your shopping list:</h2>
+      <form action="/search_product_shopping">
+        <input type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    {{!-- {{#if products}} --}}
+    {{!-- <ul>
+      <li>test</li>
+      <li>{{ products }}</li>
+      {{#each products}}
+        <li>
+          {{itemName}}
+        </li>
+      {{/each}}
+    </ul> --}}
+  {{!-- {{/if}} --}}
+
+
+  {{#unless start}}
+    {{#unless status}}
+      <p>Item not found.</p>
+    {{/unless}}
+
+    {{#if status}}
+    <form action="/add_to_shopping_list">
+      {{#each productsFound}}
+        <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-shelfLife="{{selfLife}}" data-clipartURL="{{clipartURL}}">
+        <label for="{{itemName}}">{{itemName}}</label>
+        <br>
+      {{/each}}
+      <input type="submit" value="Add to Shopping List">
+    </form>
+    {{/if}}
+  {{/unless}}
+
+
+  <h2>Shopping List</h2>
+
+  <form action="/shopping_list_to_pantree">
+    {{#each userShoppingList}}
+      <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-clipartURL="{{clipartURL}}">
+      <label for="{{itemName}}">{{itemName}}</label>
+      <br>
+    {{/each}}
+    <input type="submit" value="Add to Pantree">
+  </form>
+  
+
+
+
   <table class="pure-table">
     <thead>
       <tr>
@@ -276,4 +273,4 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/shopping.js"></script>
+{{!-- <script type="text/javascript" src="/assets/js/shopping.js"></script> --}}
