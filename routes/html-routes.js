@@ -1,6 +1,7 @@
 // Requiring path to so we can use relative routes to our HTML files
 const path = require("path");
 const fs = require("fs");
+const db = require("../models");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -97,22 +98,19 @@ module.exports = function(app) {
       res.render("shopping");
     }
   });
-
-
-    app.get("/recipes", (req, res) => {
-      fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-        if (err) {
-          console.log(err);
-        }
-        // parse it so that it is an array
-        const recipes = JSON.parse(data);
-        res.render("rps", {
-          title: "My recipes!",
-          rps: recipes
-        });
+  app.get("/recipes", (req, res) => {
+    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      }
+      // parse it so that it is an array
+      const recipes = JSON.parse(data);
+      res.render("rps", {
+        title: "My recipes!",
+        rps: recipes
       });
     });
-  
+  });
 
   app.get("/recipe/:id", (req, res) => {
     const id = parseInt(req.params.id);
@@ -126,5 +124,23 @@ module.exports = function(app) {
   app.get("/addrecipes", (req, res) => {
     res.render("addrecipes");
   });
+  // Serve index.handlebars to the root route.
+  app.get("/myrecipes", (req, res) => {
+    db.Recipe.findAll({}).then(myRecipes => {
+      res.render("myrecipes", {
+        myRecipes: myRecipes.map(myRecipes => myRecipes.toJSON())
+      });
+    });
+  });
 
+  // Show the user the individual recipe and the form to update the recipe.
+  app.get("/myrecipes/:id", (req, res) => {
+    db.Recipe.findAll({
+      id: req.params.id
+    }).then(myRecipes => {
+      res.render("myrecipe", {
+        myRecipes: myRecipes.map(myRecipes => myRecipes.toJSON())
+      });
+    });
+  });
 };
