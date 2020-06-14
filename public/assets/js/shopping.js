@@ -4,6 +4,7 @@
 
 // Grabbing the user's shoppingList data
 
+
 // var shoppingListObj;
 
 // $(document).ready(function() {
@@ -32,3 +33,4 @@
     //     }
     // });
 // });
+

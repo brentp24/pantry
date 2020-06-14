@@ -1,3 +1,4 @@
+
 $(document).ready(() => {
   // Getting references to our form and input
   let signUpForm = $("form.signup");
@@ -14,9 +15,14 @@ $(document).ready(() => {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     
     if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
       return;
+
     }
     // If we have an email and password, run the signUpUser function
     signUpUser(userData.firstName, userData.lastName, userData.email, userData.password);

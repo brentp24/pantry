@@ -38,7 +38,7 @@ a {
    margin-bottom: 45px;
    height: 70px;
  }
- /*Main Pantry*/
+ /*///////////////////////////Main Pantry/////////////////////////*/
  
  .card-content2 {
   width: 100%;
@@ -84,20 +84,49 @@ margin-left: 15px;
 }
 
 
-/*Recipe Page*/
+/*Recipe Page
+.notification {
+  width:90%;
+  height: 100%;
+  background-color: paleturquoise;
 #recipeContainer {
   /* height:550px; */
   background-color: linen
 }
-#handlebarPrac {
-  height: 450px;
-  width: 450px;
-  background-color: linen;
+#recipeCard {
+  background-color: rgb(185, 183, 183);
+  width:90%;
 }
+.title{
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+h5{
+
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+.photo-column {
+  margin-left: 350px;
+}
+li {
+  margin-left: 300px;
+}
+
+
 
 /*Appetizers Page*/
 #appetizersContainer {
+
+height: 250px;
+
 /* height: 550px; */
+
 background-color: skyblue;
 }
 #handlebarPrac {
