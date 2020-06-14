@@ -2,8 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-// const spoonacular = require("./../public/assets/js/spoonacular");
-
 // Create all our routes and set up logic within those routes where required.
 router.get("/", (req, res) => {
   spoonacular.all(data => {

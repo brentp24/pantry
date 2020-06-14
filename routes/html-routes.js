@@ -18,7 +18,6 @@ module.exports = function(app) {
     res.render("expiring");
   });
 
-
   app.get("/login", (req, res) => {
     res.render("login");
   });
@@ -29,62 +28,10 @@ module.exports = function(app) {
     res.render("homepage");
   });
 
-
-
-  app.get("/recipe", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("recipe", {
-        rps: recipes
-      });
-    });
+  app.get("/recipeSearch", (req, res) => {
+    res.render("recipeSearch");
   });
 
-  app.get("/appetizers", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("appetizers", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
-  });
-
-  app.get("/sidedish", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("sidedish", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
-  });
-
-  app.get("/maincourse", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("maincourse", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
-  });
 
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
@@ -93,7 +40,6 @@ module.exports = function(app) {
     }
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
-
 
   app.get("/shopping", (req, res) => {
     if (!req.user) {
@@ -118,7 +64,7 @@ module.exports = function(app) {
       });
     }
   });
-  
+
   app.get("/pantree", (req, res) => {
     if (!req.user) {
       res.redirect("/login");
@@ -137,23 +83,8 @@ module.exports = function(app) {
           start: true,
           userPantree: userPantree.map(userPantree => userPantree.toJSON())
         });
-
       });
     }
-  });
-
-  app.get("/recipes", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("rps", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
   });
 
   app.get("/recipe/:id", (req, res) => {
