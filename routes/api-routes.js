@@ -57,14 +57,13 @@ module.exports = function(app) {
         userID: req.user.id
       }
     }).then(userShoppingList => {
-      // console.log(req.user.firstName, "'s shopping list:");
       res.json(userShoppingList);
     });
   });
 
-  app.get("/api/recipes", (req, res) => {
-    res.json(recipeData);
-  });
+  // app.get("/api/recipes", (req, res) => {
+  //   res.json(recipeData);
+  // });
 
   app.post("/api/myrecipes", (req, res) => {
     db.Recipe.create({
