@@ -12,14 +12,6 @@ module.exports = function(app) {
     res.render("index");
   });
 
-  app.get("/rps", (req, res) => {
-    res.render("rps");
-  });
-
-  app.get("/expiring", (req, res) => {
-    res.render("expiring");
-  });
-
   app.get("/login", (req, res) => {
     res.render("login");
   });

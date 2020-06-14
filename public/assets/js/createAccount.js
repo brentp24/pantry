@@ -16,15 +16,8 @@ $(document).ready(() => {
       password: passwordInput.val().trim()
     };
 
-    
-    if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
 
-    if (
-      !userData.firstName ||
-      !userData.lastName ||
-      !userData.email ||
-      !userData.password
-    ) {
+    if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
       return;
     }
     // If we have an email and password, run the signUpUser function
@@ -59,3 +52,5 @@ $(document).ready(() => {
     $("#alert").fadeIn(500);
   }
 });
+
+
