@@ -38,6 +38,51 @@ a {
    margin-bottom: 45px;
    height: 70px;
  }
+
+/*///////////////////////////log in/////////////////////////*/
+
+
+
+
+
+
+
+
+
+
+/*///////////////////////////log in/////////////////////////*/
+
+ #loginCard {
+  background-color:khaki;
+  height: 360px;
+  margin-top: 150px;
+}
+
+#loginHeight{
+  background-color: khaki;
+  height: 310px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+#loginHeights{
+  background-color: khaki;
+  height: 260px;
+  margin-top: 15px;
+}
+.login {
+  margin-top: 5px;
+}
+.form-control {
+  margin-top: 15px;
+}
+.btn {
+  margin-top: 15px;
+  margin-left: 45px;
+}
+
+
+
  /*///////////////////////////Main Pantry/////////////////////////*/
  
  .card-content2 {
@@ -91,8 +136,8 @@ margin-left: 15px;
   background-color: paleturquoise;
 #recipeContainer {
   /* height:550px; */
-  background-color: linen
-}
+  /* background-color: linen
+} */
 #recipeCard {
   background-color: rgb(185, 183, 183);
   width:90%;
