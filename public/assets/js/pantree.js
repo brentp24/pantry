@@ -56,10 +56,9 @@ const typeOptions = [
 
 for (let i = 0; i < typeOptions.length; i++) {
   const tOpt = typeOptions[i];
-  const tEl = document.createElement("a");
+  const tEl = document.createElement("option");
   tEl.textContent = tOpt;
   tEl.value = tOpt;
-  tEl.className = "navbar-item";
   selectType.appendChild(tEl);
 }
 
@@ -79,9 +78,59 @@ const dietOptions = [
 
 for (let i = 0; i < dietOptions.length; i++) {
   const dOpt = dietOptions[i];
-  const dEl = document.createElement("a");
+  const dEl = document.createElement("option");
   dEl.textContent = dOpt;
   dEl.value = dOpt;
-  dEl.className = "navbar-item";
   selectDiet.appendChild(dEl);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("recipeSearch").addEventListener("click", () => {
+    generateRequestObject();
+    getRecipes();
+    //validation code to see State field is mandatory.
+  });
+});
+
+// eslint-disable-next-line no-unused-vars
+function generateRequestObject(requestObject) {
+  requestObject = {
+    apikey: "527c6d48a93a43bf8f435bcfd7846114",
+    ingredients: "cheese,flour,apples,milk,carrots",
+    limitLicense: true,
+    cuisine: selectCuisine.value,
+    number: document.getElementById("resultsNumber").value,
+    ranking: document.getElementById("selectCriteria").value,
+    ignorePantry: true,
+    type: selectType.value,
+    diet: selectDiet.value
+  };
+  return requestObject;
+}
+
+function getRecipes() {
+  console.log(requestObject);
+  apikey = requestObject.apikey;
+  ingredients = "&ingredients=" + requestObject.ingredients;
+  limitLicense = "&limitLicense=" + requestObject.limitLicense;
+  cuisine = "&cuisine=" + requestObject.cuisine;
+  number = "&number=" + requestObject.number;
+  ranking = "&ranking=" + requestObject.ranking;
+  ignorePantry = "&ignorePantry=" + requestObject.ignorePantry;
+
+  $.ajax({
+    url:
+      "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" +
+      apikey +
+      ingredients +
+      cuisine +
+      ranking +
+      limitLicense +
+      ignorePantry +
+      number,
+    method: "GET"
+  }).then(response => {
+    recipeData = response;
+    console.log(recipeData);
+  });
 }

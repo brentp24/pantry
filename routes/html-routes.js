@@ -1,13 +1,11 @@
 // Requiring path to so we can use relative routes to our HTML files
 const path = require("path");
-const fs = require("fs");
 const db = require("../models");
-
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function (app) {
+module.exports = function(app) {
   app.get("/", (req, res) => {
     res.render("index");
   });
@@ -18,61 +16,6 @@ module.exports = function (app) {
 
   app.get("/expiring", (req, res) => {
     res.render("expiring");
-  });
-
-  app.get("/recipe", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("recipe", {
-        rps: recipes
-      });
-    });
-  });
-
-  app.get("/appetizers", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("appetizers", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
-  });
-
-  app.get("/sidedish", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("sidedish", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
-  });
-
-  app.get("/maincourse", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("maincourse", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
   });
 
   app.get("/login", (req, res) => {
@@ -102,12 +45,14 @@ module.exports = function (app) {
         where: {
           userID: req.user.id
         }
-      }).then(function (userShoppingList) {
+      }).then(userShoppingList => {
         // console.log(req.user.firstName, "'s shopping list:");
         // console.log(userShoppingList);
         res.render("shopping", {
           start: true,
-          userShoppingList: userShoppingList.map(userShoppingList => userShoppingList.toJSON())
+          userShoppingList: userShoppingList.map(userShoppingList =>
+            userShoppingList.toJSON()
+          )
         });
       });
     }
@@ -124,7 +69,7 @@ module.exports = function (app) {
         where: {
           userID: req.user.id
         }
-      }).then(function (userPantree) {
+      }).then(userPantree => {
         // console.log(req.user.firstName, "'s pantree:");
         // console.log(userPantree);
         res.render("pantree", {
@@ -135,24 +80,19 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/recipes", (req, res) => {
-    fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      // parse it so that it is an array
-      const recipes = JSON.parse(data);
-      res.render("rps", {
-        title: "My recipes!",
-        rps: recipes
-      });
-    });
-  });
-
-
-
-
-
+  // app.get("/recipes", (req, res) => {
+  //   fs.readFile(__dirname + "/../db/db.json", "utf8", (err, data) => {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //     // parse it so that it is an array
+  //     const recipes = JSON.parse(data);
+  //     res.render("rps", {
+  //       title: "My recipes!",
+  //       rps: recipes
+  //     });
+  //   });
+  // });
 
   app.get("/recipe/:id", (req, res) => {
     const id = parseInt(req.params.id);
@@ -165,5 +105,9 @@ module.exports = function (app) {
 
   app.get("/addrecipes", (req, res) => {
     res.render("addrecipes");
+  });
+
+  app.get("/recipe", (req, res) => {
+    res.render("recipe");
   });
 };
