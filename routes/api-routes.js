@@ -66,7 +66,6 @@ module.exports = function(app) {
     res.json(recipeData);
   });
 
-
   app.post("/api/myrecipes", (req, res) => {
     db.Recipe.create({
       authorName: req.body.authorName,
@@ -109,15 +108,13 @@ module.exports = function(app) {
         res.status(401).json(err);
       });
   });
-};
-
 
   // Get route for returning product search results on shopping list page
-  app.get("/search_product_shopping", function (req, res) {
-    var searchedProduct = req.query.product;
+  app.get("/search_product_shopping", (req, res) => {
+    let searchedProduct = req.query.product;
     // Capitalizing the first letter of a searched product
-    searchedProduct = searchedProduct.charAt(0).toUpperCase() + searchedProduct.slice(1)
-
+    searchedProduct =
+      searchedProduct.charAt(0).toUpperCase() + searchedProduct.slice(1);
 
     db.Item.findAll({
       where: {
@@ -125,243 +122,210 @@ module.exports = function(app) {
           [Op.like]: "%" + searchedProduct + "%"
         }
       }
-    }).then(function (products) {
-
+    }).then(products => {
       if (Object.keys(products).length < 1) {
         console.log("Item not found.");
         db.ShoppingList.findAll({
           where: {
             userID: req.user.id
           }
-        }).then(function (userShoppingList) {
+        }).then(userShoppingList => {
           res.render("shopping", {
             start: false,
             status: false,
-            userShoppingList: userShoppingList.map(userShoppingList => userShoppingList.toJSON())
+            userShoppingList: userShoppingList.map(userShoppingList => userShoppingList.toJSON()
+            )
           });
         });
-
-      }
-
-      else {
-
+      } else {
         db.ShoppingList.findAll({
           where: {
             userID: req.user.id
           }
-        }).then(function (userShoppingList) {
+        }).then(userShoppingList => {
           res.render("shopping", {
             start: false,
             status: true,
-            userShoppingList: userShoppingList.map(userShoppingList => userShoppingList.toJSON()),
+            userShoppingList: userShoppingList.map(userShoppingList => userShoppingList.toJSON()
+            ),
             productsFound: products.map(products => products.toJSON())
           });
         });
-
       }
     });
-  });
 
+    app.get("/add_to_shopping_list", (req, res) => {
+      const productsSelected = req.query;
 
-  app.get("/add_to_shopping_list", function (req, res) {
-    var productsSelected = req.query;
-
-    if (Object.keys(productsSelected).length < 1) {
-      console.log("No items selected");
-      return;
-    }
-
-    console.log("==============");
-    for (var i = 0; i < Object.keys(productsSelected).length; i++) {
-      db.Item.findAll({
-        where: {
-          id: Object.values(productsSelected)[i]
-        }
+      if (Object.keys(productsSelected).length < 1) {
+        console.log("No items selected");
+        return;
       }
-      ).then(function (itemFound) {
 
-        var item = {
-          itemFound: itemFound.map(itemFound => itemFound.toJSON())
-        }
-
-        db.ShoppingList.create({
-          itemName: item.itemFound[0].itemName,
-          itemID: item.itemFound[0].id,
-          category: item.itemFound[0].category,
-          clipartURL: item.itemFound[0].clipartURL,
-          userID: req.user.id
-        }).then(function () {
-          console.log("Added at index ", Object.values(productsSelected)[i]);
-          res.redirect("/shopping");
-        });
-        
-      });
-    }
-    
-
-  });
-
-
-  app.get("/shopping_list_to_pantree", function (req, res) {
-
-    var productsSelected = req.query;
-
-    if (Object.keys(productsSelected).length < 1) {
-      console.log("No items selected");
-      return;
-    }
-
-    for (var i = 0; i < Object.keys(productsSelected).length; i++) {
-
-      db.ShoppingList.findAll({
-        where: {
-          id: Object.values(productsSelected)[i] // ADDED i
-        }
-      }).then(function (itemToMove) {
-
-        var item = {
-          itemToMove: itemToMove.map(itemToMove => itemToMove.toJSON())
-        }
-
+      console.log("==============");
+      for (var i = 0; i < Object.keys(productsSelected).length; i++) {
         db.Item.findAll({
           where: {
-            id: item.itemToMove[0].itemID
+            id: Object.values(productsSelected)[i]
           }
-        }).then(function (itemMatch) {
+        }).then(itemFound => {
+          const item = {
+            itemFound: itemFound.map(itemFound => itemFound.toJSON())
+          };
 
-          var item = {
-            itemMatch: itemMatch.map(itemMatch => itemMatch.toJSON())
-          }
-
-          db.Pantry.create({
-            itemName: item.itemMatch[0].itemName,
-            itemID: item.itemMatch[0].id,
-            category: item.itemMatch[0].category,
-            expirationDate: "01/01/2021", // Just temporarily set to fixed date
-            clipartURL: item.itemMatch[0].clipartURL,
+          db.ShoppingList.create({
+            itemName: item.itemFound[0].itemName,
+            itemID: item.itemFound[0].id,
+            category: item.itemFound[0].category,
+            clipartURL: item.itemFound[0].clipartURL,
             userID: req.user.id
-          })
-        });
-      });
-    };
-    res.redirect("/shopping");
-
-  });
-
-
-
-  // Get route for returning product search results on pantree page
-  app.get("/search_product_pantree", function (req, res) {
-    var searchedProduct = req.query.product;
-    // Capitalizing the first letter of a searched product
-    searchedProduct = searchedProduct.charAt(0).toUpperCase() + searchedProduct.slice(1)
-
-    db.Item.findAll({
-      where: {
-        itemName: {
-          [Op.like]: "%" + searchedProduct + "%"
-        }
-      }
-    }).then(function (products) {
-
-      if (Object.keys(products).length < 1) {
-        db.Pantry.findAll({
-          where: {
-            userID: req.user.id
-          }
-        }).then(function (userPantree) {
-          res.render("pantree", {
-            start: false,
-            status: false,
-            userPantree: userPantree.map(userPantree => userPantree.toJSON())
-          });
-        });
-      }
-
-      else {
-        db.Pantry.findAll({
-          where: {
-            userID: req.user.id
-          }
-        }).then(function (userPantree) {
-          res.render("pantree", {
-            start: false,
-            status: true,
-            userPantree: userPantree.map(userPantree => userPantree.toJSON()),
-            productsFound: products.map(products => products.toJSON())
+          }).then(() => {
+            console.log("Added at index ", Object.values(productsSelected)[i]);
+            res.redirect("/shopping");
           });
         });
       }
     });
 
+    app.get("/shopping_list_to_pantree", (req, res) => {
+      const productsSelected = req.query;
 
-  });
+      if (Object.keys(productsSelected).length < 1) {
+        console.log("No items selected");
+        return;
+      }
 
+      for (let i = 0; i < Object.keys(productsSelected).length; i++) {
+        db.ShoppingList.findAll({
+          where: {
+            id: Object.values(productsSelected)[i] // ADDED i
+          }
+        }).then(itemToMove => {
+          const item = {
+            itemToMove: itemToMove.map(itemToMove => itemToMove.toJSON())
+          };
 
+          db.Item.findAll({
+            where: {
+              id: item.itemToMove[0].itemID
+            }
+          }).then(itemMatch => {
+            const item = {
+              itemMatch: itemMatch.map(itemMatch => itemMatch.toJSON())
+            };
 
-  // Add items from search to the pantry
-  app.get("/add_to_pantree", function (req, res) {
+            db.Pantry.create({
+              itemName: item.itemMatch[0].itemName,
+              itemID: item.itemMatch[0].id,
+              category: item.itemMatch[0].category,
+              expirationDate: "01/01/2021", // Just temporarily set to fixed date
+              clipartURL: item.itemMatch[0].clipartURL,
+              userID: req.user.id
+            });
+          });
+        });
+      }
+      res.redirect("/shopping");
+    });
 
-    var productsSelected = req.query;
+    // Get route for returning product search results on pantree page
+    app.get("/search_product_pantree", (req, res) => {
+      let searchedProduct = req.query.product;
+      // Capitalizing the first letter of a searched product
+      searchedProduct =
+        searchedProduct.charAt(0).toUpperCase() + searchedProduct.slice(1);
 
-    if (Object.keys(productsSelected).length < 1) {
-      console.log("No items selected");
-      return;
-    }
-
-    for (var i = 0; i < Object.keys(productsSelected).length; i++) {
       db.Item.findAll({
         where: {
-          id: Object.values(productsSelected)[i]
+          itemName: {
+            [Op.like]: "%" + searchedProduct + "%"
+          }
         }
-      }
-      ).then(function (itemFound) {
-
-        var item = {
-          itemFound: itemFound.map(itemFound => itemFound.toJSON())
-        }
-
-        db.Pantry.create({
-          itemName: item.itemFound[0].itemName,
-          itemID: item.itemFound[0].id,
-          category: item.itemFound[0].category,
-          expirationDate: "01/01/2021", // Temporary value
-          clipartURL: item.itemFound[0].clipartURL,
-          userID: req.user.id
-        }).then(function () {
+      }).then(products => {
+        if (Object.keys(products).length < 1) {
           db.Pantry.findAll({
             where: {
               userID: req.user.id
             }
-          })
-          .then(function (userPantree) {
-            res.redirect("/pantree");
+          }).then(userPantree => {
+            res.render("pantree", {
+              start: false,
+              status: false,
+              userPantree: userPantree.map(userPantree => userPantree.toJSON())
+            });
+          });
+        } else {
+          db.Pantry.findAll({
+            where: {
+              userID: req.user.id
+            }
+          }).then(userPantree => {
+            res.render("pantree", {
+              start: false,
+              status: true,
+              userPantree: userPantree.map(userPantree => userPantree.toJSON()),
+              productsFound: products.map(products => products.toJSON())
+            });
+          });
+        }
+      });
+    });
+
+    // Add items from search to the pantry
+    app.get("/add_to_pantree", (req, res) => {
+      const productsSelected = req.query;
+
+      if (Object.keys(productsSelected).length < 1) {
+        console.log("No items selected");
+        return;
+      }
+
+      for (let i = 0; i < Object.keys(productsSelected).length; i++) {
+        db.Item.findAll({
+          where: {
+            id: Object.values(productsSelected)[i]
+          }
+        }).then(itemFound => {
+          const item = {
+            itemFound: itemFound.map(itemFound => itemFound.toJSON())
+          };
+
+          db.Pantry.create({
+            itemName: item.itemFound[0].itemName,
+            itemID: item.itemFound[0].id,
+            category: item.itemFound[0].category,
+            expirationDate: "01/01/2021", // Temporary value
+            clipartURL: item.itemFound[0].clipartURL,
+            userID: req.user.id
+          }).then(() => {
+            db.Pantry.findAll({
+              where: {
+                userID: req.user.id
+              }
+            }).then(userPantree => {
+              res.redirect("/pantree");
+            });
           });
         });
-      });
-    };
+      }
+    });
+
+    // Make recipe search from the pantree
+    app.get("/pantree_recipe_search", (req, res) => {
+      const productsSelected = req.query;
+      console.log(req.query);
+      console.log("length = ", Object.keys(productsSelected).length);
+
+      if (Object.keys(productsSelected).length < 1) {
+        console.log("No items selected");
+        return;
+      }
+
+      console.log("========");
+      console.log(Object.keys(productsSelected));
+      console.log("========");
+
+      res.redirect("/pantree");
+    });
   });
-
-
-  // Make recipe search from the pantree
-  app.get("/pantree_recipe_search", function (req, res) {
-
-    var productsSelected = req.query;
-    console.log(req.query);
-    console.log("length = ", Object.keys(productsSelected).length);
-
-    if (Object.keys(productsSelected).length < 1) {
-      console.log("No items selected");
-      return;
-    }
-
-
-    console.log("========");
-    console.log(Object.keys(productsSelected));
-    console.log("========");
-
-    res.redirect("/pantree");
-
-  });
-
-
+};
