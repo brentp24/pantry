@@ -31,49 +31,18 @@
         </a>
       </div>
     </div>
+
     <div id="brand2">
       <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="notification" id="recipeContainer">
-   <div class="card" id="recipeCard">
-    <h2 class="title is-2"> Recipes</h2>
-
-
-{{#each rps}}
-<h1> {{title}}</h1>
-<div class="photo-column">
-    <img src="{{image}}">
+<div id="runSpoonacularContainer">
+  {{> runSpoonacular}}
 </div>
-{{!-- <p>ID: {{id}}</p> --}}
-<div>
-    <h5>Missing Ingredients</h5>
-    <ul class="missed-ingredients">
-        {{#each missedIngredients}}
-        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
-            aisle: {{this.aisle}}
-        </li>
-        {{/each}}
-    </ul>
-    <h5>Used Ingredients</h5>
-    <ul class="used-ingredients">
-        {{#each usedIngredients}}
-        <li>{{this.originalName}} {{this.amount}} {{this.unit}}
-            aisle: {{this.aisle}}
-        </li>
-        {{/each}}
-    </ul>
-</div>
-<hr>
-{{/each}}
-    </div>
-  </div>
-  </div>
+
 <div id="recipeContainer">
   <div class="title is-4">Recipes</div>
-    {{> rps}}
-
+  {{> rps}}
 </div>
