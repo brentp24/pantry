@@ -5,7 +5,6 @@ const axios = require("axios");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-const recipeSearch = require("../models/recipeSearch");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -51,7 +50,10 @@ module.exports = function(app) {
         .then(response => {
           recipeData = response;
           console.log(recipeData.data);
-          res.render("recipe", recipeData.data);
+          const rps = {
+            rps: recipeData.data
+          };
+          res.render("recipe", rps);
         });
     });
   });
