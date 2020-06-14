@@ -1,9 +1,11 @@
 // Requiring path to so we can use relative routes to our HTML files
 const path = require("path");
 const db = require("../models");
+const axios = require("axios");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+const recipeSearch = require("../models/recipeSearch");
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
@@ -32,6 +34,35 @@ module.exports = function(app) {
     res.render("recipeSearch");
   });
 
+  //trying to figure this out.
+  app.get("/recipe", (req, res) => {
+    db.RecipeSearch.findAll({}).then(recipeSearch => {
+      //run spoonacular search
+      apikey = "527c6d48a93a43bf8f435bcfd7846114";
+      ingredients = "&ingredients=" + "cheese,flour,apples,milk,carrots";
+      limitLicense = "&limitLicense=" + true;
+      cuisine = "&cuisine=" + recipeSearch[0].cuisineType;
+      number = "&number=" + recipeSearch[0].numberResults;
+      ranking = "&ranking=" + recipeSearch[0].selectionCriteria;
+      ignorePantry = "&ignorePantry=" + true;
+      axios
+        .get(
+          "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" +
+            apikey +
+            ingredients +
+            cuisine +
+            ranking +
+            limitLicense +
+            ignorePantry +
+            number
+        )
+        .then(response => {
+          recipeData = response;
+          console.log(recipeData.data);
+          res.render("recipe", recipeData.data);
+        });
+    });
+  });
 
   app.get("/login", (req, res) => {
     // If the user already has an account send them to the front page
