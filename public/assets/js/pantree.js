@@ -1,6 +1,6 @@
 $(document).ready(() => {
   $("#recipeSearch").on("click", () => {
-    getRecipes();
+    postRequest();
   });
 });
 
@@ -92,7 +92,7 @@ for (let i = 0; i < dietOptions.length; i++) {
 const resultsNumber = document.getElementById("resultsNumber");
 const resultsRanking = document.getElementById("selectCriteria");
 
-function getRecipes() {
+function postRequest() {
   requestObject = {
     apikey: "527c6d48a93a43bf8f435bcfd7846114",
     ingredients: "cheese,flour,apples,milk,carrots",
@@ -106,27 +106,4 @@ function getRecipes() {
   };
 
   console.log(requestObject);
-  apikey = requestObject.apikey;
-  ingredients = "&ingredients=" + requestObject.ingredients;
-  limitLicense = "&limitLicense=" + requestObject.limitLicense;
-  cuisine = "&cuisine=" + requestObject.cuisine;
-  number = "&number=" + requestObject.number;
-  ranking = "&ranking=" + requestObject.ranking;
-  ignorePantry = "&ignorePantry=" + requestObject.ignorePantry;
-
-  $.ajax({
-    url:
-      "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" +
-      apikey +
-      ingredients +
-      cuisine +
-      ranking +
-      limitLicense +
-      ignorePantry +
-      number,
-    method: "GET"
-  }).then(response => {
-    recipeData = response;
-    console.log(recipeData);
-  });
 }
