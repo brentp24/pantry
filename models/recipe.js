@@ -7,7 +7,10 @@ module.exports = function(sequelize, DataTypes) {
   const Recipe = sequelize.define("Recipe", {
     recipeName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     },
     authorName: {
       type: DataTypes.STRING,
@@ -15,11 +18,14 @@ module.exports = function(sequelize, DataTypes) {
     },
     ingredientsName: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     },
     instructionsName: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false
     }
   });
   return Recipe;

@@ -1,6 +1,6 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(() => {
-  $(".delrecipe").on("click", function(event) {
+$(document).ready(() => {
+  $(".delrecipe").on("click", function() {
     const id = $(this).data("id");
 
     // Send the DELETE request.
@@ -12,16 +12,20 @@ $(() => {
       location.reload();
     });
   });
-
+  // create a new author and recipe name
   $(".create-form").on("submit", event => {
-    // Make sure to preventDefault on a submit event.
     event.preventDefault();
-
     const newRecipe = {
       authorName: $("#auth")
         .val()
         .trim(),
       recipeName: $("#rec")
+        .val()
+        .trim(),
+      ingredientsName: $("#ing")
+        .val()
+        .trim(),
+      instructionsName: $("#ins")
         .val()
         .trim()
     };
