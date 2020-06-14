@@ -27,12 +27,23 @@ module.exports = function(app) {
 
   //trying to figure this out.
   app.get("/recipe", (req, res) => {
-    db.RecipeSearch.findAll({}).then(recipeSearch => {
+    db.RecipeSearch.findAll({
+      limit: 1,
+      // where: {
+      //   //your where conditions, or without them if you need ANY entry
+      //   userID: req.user.id
+      // },
+      order: [["createdAt", "DESC"]]
+    }).then(recipeSearch => {
       //run spoonacular search
       apikey = "527c6d48a93a43bf8f435bcfd7846114";
       ingredients = "&ingredients=" + "cheese,flour,apples,milk,carrots";
       limitLicense = "&limitLicense=" + true;
       cuisine = "&cuisine=" + recipeSearch[0].cuisineType;
+      //meal type
+      mealType = "&type=" + recipeSearch[0].mealType;
+      //diet
+      dietType = "&diet=" + recipeSearch[0].dietType;
       number = "&number=" + recipeSearch[0].numberResults;
       ranking = "&ranking=" + recipeSearch[0].selectionCriteria;
       ignorePantry = "&ignorePantry=" + true;
@@ -42,16 +53,16 @@ module.exports = function(app) {
             apikey +
             ingredients +
             cuisine +
+            mealType +
+            dietType +
             ranking +
             limitLicense +
             ignorePantry +
             number
         )
         .then(response => {
-          recipeData = response;
-          console.log(recipeData.data);
           const rps = {
-            rps: recipeData.data
+            rps: response.data
           };
           res.render("recipe", rps);
         });
