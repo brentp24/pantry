@@ -1,29 +1,36 @@
-
 $(document).ready(() => {
   // Getting references to our form and input
-  let signUpForm = $("form.signup");
-  let firstNameInput = $("input#first-name-input");
+  const signUpForm = $("form.signup");
+  const firstNameInput = $("input#first-name-input");
   const lastNameInput = $("input#last-name-input");
   const emailInput = $("input#email-input");
-  let passwordInput = $("input#password-input");
+  const passwordInput = $("input#password-input");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", event => {
     event.preventDefault();
-    var userData = {
+    const userData = {
       firstName: firstNameInput.val().trim(),
       lastName: lastNameInput.val().trim(),
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
 
-    
-    if (!userData.firstName || !userData.lastName || !userData.email || !userData.password) {
+    if (
+      !userData.firstName ||
+      !userData.lastName ||
+      !userData.email ||
+      !userData.password
+    ) {
       return;
-
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.firstName, userData.lastName, userData.email, userData.password);
+    signUpUser(
+      userData.firstName,
+      userData.lastName,
+      userData.email,
+      userData.password
+    );
     firstNameInput.val("");
     lastNameInput.val("");
     emailInput.val("");
@@ -40,7 +47,7 @@ $(document).ready(() => {
       password: password
     })
       .then(data => {
-        window.location.replace("/");
+        window.location.replace("/login");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
