@@ -64,44 +64,93 @@ module.exports = function(app) {
   // app.get("/api/recipes", (req, res) => {
   //   res.json(recipeData);
   // });
-
+// Get route for retrieving a single post
+app.get("/api/myrecipes/:id", function(req, res) {
+  db.Recipe.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(function(recipePost) {
+      res.json(recipePost);
+    });
+});
+  // app.post("/api/myrecipes", (req, res) => {
+  //   db.Recipe.create({
+  //     authorName: req.body.authorName,
+  //     recipeName: req.body.recipeName,
+  //     ingredientsName: req.body.ingredientsName,
+  //     instructionsName: req.body.instructionsName
+  //   })
+  //     .then(() => {
+  //       res.redirect("/myrecipes");
+  //     })
+  //     .catch(err => {
+  //       res.status(401).json(err);
+  //     });
+  // });
+  // POST route for saving a new Recipe - hw example
   app.post("/api/myrecipes", (req, res) => {
     db.Recipe.create({
       authorName: req.body.authorName,
       recipeName: req.body.recipeName,
       ingredientsName: req.body.ingredientsName,
       instructionsName: req.body.instructionsName
-    })
-      .then(() => {
-        res.redirect("/myrecipes");
-      })
-      .catch(err => {
-        res.status(401).json(err);
-      });
+    }).then(recipePost => {
+      res.json(recipePost);
+    });
   });
 
+  // app.delete("/api/myrecipes/:id", (req, res) => {
+  //   db.Recipe.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   })
+  //     .then(() => {
+  //       res.redirect("/myrecipes");
+  //     })
+  //     .catch(err => {
+  //       res.status(401).json(err);
+  //     });
+  // });
+  // delete a recipe from the database - homework example - this works
   app.delete("/api/myrecipes/:id", (req, res) => {
     db.Recipe.destroy({
       where: {
         id: req.params.id
       }
-    })
-      .then(() => {
-        res.redirect("/myrecipes");
-      })
-      .catch(err => {
-        res.status(401).json(err);
-      });
+    }).then(recipePost => {
+      res.json(recipePost);
+    });
   });
   // Update a recipe by an id and then redirect to the root route.
+  // app.put("/api/myrecipes/:id", (req, res) => {
+  //   db.Recipe.update(
+  //     { authorName: req.body.authorName },
+  //     { recipeName: req.body.recipeName },
+  //     { where: req.params.id }
+  //   )
+  //     .then(() => {
+  //       res.redirect("/myrecipes");
+  //     })
+  //     .catch(err => {
+  //       res.status(401).json(err);
+  //     });
+  // });
+  //PUT route for updating Recipe Posts - followed activity example for blog posts
   app.put("/api/myrecipes/:id", (req, res) => {
     db.Recipe.update(
-      { authorName: req.body.authorName },
-      { recipeName: req.body.recipeName },
-      { where: req.params.id }
+      req.body,
+
+      {
+        where: {
+          id: req.body.id
+        }
+      }
     )
-      .then(() => {
-        res.redirect("/myrecipes");
+      .then(recipePost => {
+        res.json(recipePost);
       })
       .catch(err => {
         res.status(401).json(err);
