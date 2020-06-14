@@ -59,7 +59,6 @@ module.exports = function(app) {
     }
     ).then(function (userShoppingList) {
       // console.log(req.user.firstName, "'s shopping list:");
-
       res.json(userShoppingList);
     });
   });
@@ -67,6 +66,51 @@ module.exports = function(app) {
   app.get("/api/recipes", (req, res) => {
     res.json(recipeData);
   });
+
+
+  app.post("/api/myrecipes", (req, res) => {
+    db.Recipe.create({
+      authorName: req.body.authorName,
+      recipeName: req.body.recipeName,
+      ingredientsName: req.body.ingredientsName,
+      instructionsName: req.body.instructionsName
+    })
+      .then(() => {
+        res.redirect("/myrecipes");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.delete("/api/myrecipes/:id", (req, res) => {
+    db.Recipe.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(() => {
+        res.redirect("/myrecipes");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+  // Update a recipe by an id and then redirect to the root route.
+  app.put("/api/myrecipes/:id", (req, res) => {
+    db.Recipe.update(
+      { authorName: req.body.authorName },
+      { recipeName: req.body.recipeName },
+      { where: req.params.id }
+    )
+      .then(() => {
+        res.redirect("/myrecipes");
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+};
 
 
   // Get route for returning product search results on shopping list page

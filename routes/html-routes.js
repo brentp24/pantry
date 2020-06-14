@@ -3,7 +3,6 @@ const path = require("path");
 const fs = require("fs");
 const db = require("../models");
 
-
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
@@ -118,8 +117,6 @@ module.exports = function (app) {
       });
     }
   });
-
-
   
   app.get("/pantree", (req, res) => {
     if (!req.user) {
@@ -158,8 +155,6 @@ module.exports = function (app) {
     });
   });
 
-
-
   app.get("/recipe/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const recipe = recipes.find(x => x.id === id);
@@ -171,5 +166,25 @@ module.exports = function (app) {
 
   app.get("/addrecipes", (req, res) => {
     res.render("addrecipes");
+  });
+
+  // Serve index.handlebars to the root route.
+  app.get("/myrecipes", (req, res) => {
+    db.Recipe.findAll({}).then(myRecipes => {
+      res.render("myrecipes", {
+        myRecipes: myRecipes.map(myRecipes => myRecipes.toJSON())
+      });
+    });
+  });
+
+  // Show the user the individual recipe and the form to update the recipe.
+  app.get("/myrecipes/:id", (req, res) => {
+    db.Recipe.findAll({
+      id: req.params.id
+    }).then(myRecipes => {
+      res.render("myrecipe", {
+        myRecipes: myRecipes.map(myRecipes => myRecipes.toJSON())
+      });
+    });
   });
 };

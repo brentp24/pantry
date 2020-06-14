@@ -1,0 +1,37 @@
+<h1>Recipes App</h1>
+
+<p>Manage recipes with this app</p>
+
+<!-- Pass in data from server.js -->
+<ul>
+  {{#each myRecipes}}
+  	<li>
+      <p><span class="label">Author:</span> {{this.authorName}}</p>
+	  <p><span class="label">Recipe:</span> {{this.recipeName}}</p>
+
+      <button data-id="{{this.id}}" class="delrecipe">Delete</button>
+
+      <a href="/{{this.id}}">Update this Recipe</a>
+	  <a href="/{{this.id}}">View this Recipe</a>
+  	</li>
+  {{/each}}
+</ul>
+
+<h2>Add a Recipe</h2>
+
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="auth">Author:</label>
+    <input type="text" id="auth" name="author">
+  </div>
+
+  <div class="form-group">
+    <label for="rec">Recipe Name:</label>
+    <input id="rec" name="recipe"></input>
+  </div>
+
+  <button type="submit">Add Recipe</button>
+</form>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="./../public/assets/js/test.js"></script>
