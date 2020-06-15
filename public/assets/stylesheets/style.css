@@ -85,6 +85,10 @@ a {
    /* height: 700px; */
    cursor: pointer;
  }
+ #panTreeImage {
+   width: 100%;
+   height: 100%;
+ }
  #shoppingTile {
 margin-left: 75px;
 }
