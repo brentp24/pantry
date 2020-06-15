@@ -109,20 +109,6 @@ module.exports = function (app) {
       res.json(recipePost);
     });
   });
-  //PUT route for updating Recipe Posts - followed activity example for blog posts
-  app.put("/api/myrecipes/:id", (req, res) => {
-    db.Recipe.update(
-      req.body,
-
-      {
-        where: {
-          id: req.body.id
-        }
-      }
-    ).then(recipePost => {
-      res.json(recipePost);
-    });
-  });
 
   // Get route for returning product search results on shopping list page
   app.get("/search_product_shopping", (req, res) => {
@@ -370,23 +356,7 @@ module.exports = function (app) {
     }).then(recipePost => {
       // res.json(recipePost);
       res.sendStatus(200);
-      
-
-
     })
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
+  })
 
 };

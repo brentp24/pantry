@@ -225,6 +225,14 @@ li {
 /* .is-primary {
   background-color: #354F52;} */
 
+
+/*///////////////////////////Add Recipes/////////////////////////*/
+
+.create-form {
+  text-align: center;
+}
+
   .navbar-menu {
     background-color: #CAD2C5;
   };
+
