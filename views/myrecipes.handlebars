@@ -2,23 +2,8 @@
   {{> nav}}
 </div>
 
-<h1>Recipes App</h1>
+<h1>Add Recipes</h1>
 
-<ul>
-  {{#each myRecipes}}
-  	<li>
-      <p><span class="label">Author:</span> {{this.authorName}}</p>
-	  <p><span class="label">Recipe:</span> {{this.recipeName}}</p>
-
-      <button data-id="{{this.id}}" class="delrecipe">Delete</button>
-
-      <a href="/{{this.id}}">Update this Recipe</a>
-	  <a href="/{{this.id}}">View this Recipe</a>
-  	</li>
-  {{/each}}
-</ul>
-
-<h2>Add a Recipe</h2>
 
 <form class="create-form">
 
@@ -42,5 +27,22 @@
 
   <button type="submit">Add Recipe</button>
 </form>
+
+<ul>
+  {{#each myRecipes}}
+  	<li>
+    <p class="label">Author: {{this.authorName}}</p>
+	  <p class="label">Recipe: {{this.recipeName}}</p>
+    <p class="label">Ingredients: {{this.ingredientsName}}</p>
+    <p class="label">Instructions: {{this.instructionsName}}</p>
+
+      <button data-id="{{this.id}}" class="delrecipe">Delete</button>
+       
+      
+  	</li>
+  {{/each}}
+</ul>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/myrecipe.js"></script>
