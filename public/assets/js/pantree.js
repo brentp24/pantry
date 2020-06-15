@@ -107,5 +107,50 @@ $(document).ready(() => {
   $(".runSpoonacular").on("submit", event => {
     event.preventDefault();
     postRequest();
+
+    requestObject = {
+      apikey: "527c6d48a93a43bf8f435bcfd7846114",
+      ingredients: "cheese,flour,apples,milk,carrots",
+      limitLicense: true,
+      cuisine: $("#selectCuisine").val(),
+      number: $("#resultsNumber").val(),
+      ranking: $("#selectCriteria").val(),
+      ignorePantry: true,
+      type: $("#selectType").val(),
+      diet: $("#selectDiet").val()
+    };
+
+    // Send the POST request.
+    $.ajax({
+      url: "/searchRecipes",
+      type: "GET", // CHANGE TO POST
+      data: JSON.stringify(requestObject),
+      success: function() {
+        console.log("New search created!");
+        location.reload();  
+      }
+    })
+    // .then(() => {
+    //   console.log("New search created!");
+    //   location.reload();
+    // });
+    // .then(() => {
+    //   // Reload the page to get the updated list
+    //   location.reload();
+    // });
+
+
+      //   // Send the POST request.
+      //   $.ajax("/api/myrecipes/", {
+      //     type: "POST",
+      //     data: newRecipe
+      //   }).then(() => {
+      //     console.log("created new recipe");
+      //     // Reload the page to get the updated list
+      //     location.reload();
+      //   });
+      // });
+
+
   });
 });

@@ -4,7 +4,7 @@ const passport = require("../config/passport");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -64,17 +64,17 @@ module.exports = function(app) {
   // app.get("/api/recipes", (req, res) => {
   //   res.json(recipeData);
   // });
-// Get route for retrieving a single post
-app.get("/api/myrecipes/:id", function(req, res) {
-  db.Recipe.findOne({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(function(recipePost) {
-      res.json(recipePost);
-    });
-});
+  // Get route for retrieving a single post
+  app.get("/api/myrecipes/:id", function (req, res) {
+    db.Recipe.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(function (recipePost) {
+        res.json(recipePost);
+      });
+  });
   // app.post("/api/myrecipes", (req, res) => {
   //   db.Recipe.create({
   //     authorName: req.body.authorName,
@@ -91,6 +91,7 @@ app.get("/api/myrecipes/:id", function(req, res) {
   // });
   // POST route for saving a new Recipe - hw example
   app.post("/api/myrecipes", (req, res) => {
+    console.log("Recipes being created!")
     db.Recipe.create({
       authorName: req.body.authorName,
       recipeName: req.body.recipeName,
@@ -375,5 +376,51 @@ app.get("/api/myrecipes/:id", function(req, res) {
 
       res.redirect("/pantree");
     });
+
+
+    // app.get("/searchNewRecipes", (req, res) => { // CHANGE TO POST
+
+    //   console.log("Params from body");
+    //   console.log(req.body.ranking);
+    //   console.log(req.user.id);
+    //   console.log(req.body.type);
+    //   console.log(req.body.diet);
+    //   console.log(req.body.cuisine);
+    //   console.log(req.body.number);
+
+    //   // db.RecipeSearch.create({
+    //   //   authorName: req.body.authorName,
+    //   //   recipeName: req.body.recipeName,
+    //   //   ingredientsName: req.body.ingredientsName,
+    //   //   instructionsName: req.body.instructionsName
+    //   // }).then(recipePost => {
+    //   //   res.json(recipePost);
+    //   // });
+
+    //   // res.redirect("/recipe");
+    // });
+
+    // POST route for saving a new Recipe - hw example
+    app.get("/searchRecipes", (req, res) => {
+      console.log("Params from body");
+      console.log(req.body.ranking);
+      console.log(req.user.id);
+      console.log(req.body.type);
+      console.log(req.body.diet);
+      console.log(req.body.cuisine);
+      console.log(req.body.number);
+      db.RecipeSearch.create({
+        selectionCriteria: req.body.ranking,
+        userID: req.user.id,
+        mealType: req.body.type,
+        dietType: req.body.diet,
+        cuisineType: req.body.cuisine,
+        numberResults: req.body.number
+      }).then(recipePost => {
+        // res.json(recipePost);
+        res.sendStatus(200);
+      });
+    });
+
   });
 };
