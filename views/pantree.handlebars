@@ -1,39 +1,87 @@
-    <h1>PANTREE</h1>
+<div id="navbarBasicExample" class="navbar-menu">
+  <div id="brand">
+    <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
+  </div>
+  <div class="navbar-start">
+    <a class="navbar-item" href="/homepage">
+      Main Pantry
+    </a>
 
-    <section class="productSearchSection">
-      <h2>Search for products to add to your Pantree:</h2>
-      <form action="/search_product_pantree">
-        <input type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
-        <button type="submit">Search</button>
-      </form>
-    </section>
+    <a href="/shopping" class="navbar-item">
+      Shopping
+    </a>
+    <a href="/recipe" class="navbar-item">
+      Recipes
+    </a>
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+        Dinner
+      </a>
+      <div class="navbar-dropdown">
+        <a class="navbar-item" href="/recipeSearch">
+          Appetizers
+        </a>
+        <a class="navbar-item" href="/recipeSearch">
+          Side Dishes
+        </a>
+        <a class="navbar-item" href="/recipeSearch">
+          Main Course
+        </a>
+      </div>
+    </div>
+    <div id="brand2">
+      <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand">
+    </div>
+  </div>
+</div>
 
+<div class="container is-fluid" id="panTreeContainer">
+  <div class="columns">
+    <div class="column is-4">
+      <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand" width="85%">
+    </div>
+    
+    <div class="notification" id="panTreeNotification">
+      <div class="column is-12">
+        <h1>PANTREE</h1>
+        <section class="productSearchSection">
+          <h2>Search for products to add to your Pantree:</h2>
+          <form action="/search_product_pantree">
+            <input type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
+            <button type="submit">Search</button>
+          </form>
+        </section>
+        {{#unless start}}
+        {{#unless status}}
+        <p>Item not found.</p>
+        {{/unless}}
+        {{#if status}}
+        <form action="/add_to_pantree">
+          {{#each productsFound}}
+          <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}"
+            data-category="{{category}}" data-shelfLife="{{selfLife}}" data-clipartURL="{{clipartURL}}">
+          <label for="{{itemName}}">{{itemName}}</label>
+          <br>
+          {{/each}}
+          <input type="submit" value="Add to Pantree">
+        </form>
+        {{/if}}
+        {{/unless}}
+        <h2>Pantree</h2>
+        <form action="/pantree_recipe_search">
+          {{#each userPantree}}
+          <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}"
+            data-category="{{category}}" data-clipartURL="{{clipartURL}}">
+          <label for="{{itemName}}">{{itemName}}</label>
+          <br>
+          {{/each}}
+          <input type="submit" value="Search Recipes">
+        </form>
+      </div>
+    </div>
 
-  {{#unless start}}
-    {{#unless status}}
-      <p>Item not found.</p>
-    {{/unless}}
-
-    {{#if status}}
-    <form action="/add_to_pantree">
-      {{#each productsFound}}
-        <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-shelfLife="{{selfLife}}" data-clipartURL="{{clipartURL}}">
-        <label for="{{itemName}}">{{itemName}}</label>
-        <br>
-      {{/each}}
-      <input type="submit" value="Add to Pantree">
-    </form>
-    {{/if}}
-  {{/unless}}
-
-
-  <h2>Pantree</h2>
-
-  <form action="/pantree_recipe_search">
-    {{#each userPantree}}
-      <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-clipartURL="{{clipartURL}}">
-      <label for="{{itemName}}">{{itemName}}</label>
-      <br>
-    {{/each}}
-    <input type="submit" value="Search Recipes">
-  </form>
+    <div class="column is-4">
+      <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand" width="85%">
+    </div>
+  </div>
+</div>

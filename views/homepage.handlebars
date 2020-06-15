@@ -1,114 +1,133 @@
 <div class="card">
-<nav>
-    <div class="nav_text_field">
-        <h1 class="nav_text"></h1>
-    </div>
-    <div class="nav_btns">
-        <a class="logout_btn" href="/logout">Logout</a>
-        <a class="login_btn" href="/login">Login</a>
-        <a class="create_acc_btn" href="/createAccount">Create Account</a>
-    </div>
-</nav>
+    <nav>
+        <div class="nav_text_field">
+            <h1 class="nav_text"></h1>
+        </div>
+        <div class="nav_btns">
+            <a class="logout_btn" href="/logout">Logout</a>
+            {{!-- <a class="login_btn" href="/login">Login</a>
+            <a class="create_acc_btn" href="/createAccount">Create Account</a> --}}
+        </div>
+    </nav>
 
     <div class="card-content2">
         <div class="tile is-ancestor" id="shoppingTile">
-            <div class="tile is-vertical is-9">
+            <div class="tile is-vertical is-11">
                 <div class="tile">
                     <div class="tile is-parent is-vertical">
 
                         {{!-- Shopping --}}
-                        <article class="tile is-child notification is-primary">
+                        <article class="tile is-child notification is-primary" id"=shoppingId">
                             <a href="/shopping">
                                 <div class="columns is-mobile">
                                     <div class="columns">
                                         <div class="column is-6">
                                             <img
                                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSEuC6hz_phBr37cHmaw5Qh3bMD-bTXLgG_KYaPZ31UpUYrxFU9&usqp=CAU">
-                                        </div>
-                                        <div class="column is 10">
-                                            <p class="title">Shopping:</p>
                             </a>
+                    </div>
+                    <div class="column is 11">
+                        <p class="title">Shopping</p>
+                        <div class="shopping-list">
+                            <p class="subtitle">Create an online shopping list! </p>
+                        </div>
                         </article>
 
                         {{!-- Expiring --}}
-                        <article class="tile is-child notification is-warning">
-                            <div class="columns is-mobile">
-                                <div class="columns">
-                                    <div class="column is-6">
-                                        <a href="/pantree"></a>
-                                        <img
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGIIThBOLzMa1BtKhGAT6XjN5tXtty4NVWz8SNDMuULE382wCX&usqp=CAU">
-                                    </div>
-                                    <div class="column is 2">
-                                        <p class="title">Pantry</p>
-                                        <div class="expiring-subtitle">
-                                            <p class="subtitle">Track perishable items that are about to go bad with
-                                                PanTree!</p>
+                        <article class="tile is-child notification" id="pantryId">
+                            <div class="tile is-vertical is-8">
+                                <div class="columns is-mobile">
+                                    <div class="columns">
+                                        <div class="column is-9">
+                                            <a href="/pantree">
+                                                <img {{!-- src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTGIIThBOLzMa1BtKhGAT6XjN5tXtty4NVWz8SNDMuULE382wCX&usqp=CAU"> --}}
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS6B9A-9mjo2KubmiDTN-hb_K5o81-vUgbxfqu2OC0zFD09R8yI&usqp=CAU">
+                                            </a>
                                         </div>
-                                        <!-- <a class="button is-centered" id="recipeButton">Button</a> -->
+                                        <div class="column is-8">
+                                            {{!-- <a href="/pantree"> --}}
+                                            <p class="title" id="pantryText">Pantry</p>
+                                            <div class="expiring-subtitle">
+                                                <p class="subtitle">A list of items currently in your pantry! </p>
+                                            </div>
+                                        </div>
                                     </div>
                         </article>
 
                     </div>
 
-                    <div class="tile is-parent" >
-    
-                            <article class="tile is-child notification is-info" id="recipeTile">
-                                <div class="content">
-                                    <!-- <div class="card"> -->
-                                    <div class="columns is-mobile">
-                                        <div class="columns">
-                                            <div class="column is-4">
-                                                <a href="/myrecipes">
-                                                    <img
-                                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc">
-                                            </div>
-                                            <div class="column is-3">
-                                                <p class="title">Upload Your Own Recipes!</p>
-                                                </a>
-                                                <p class="subtitle"> Add your favorite recipes to PanTree!</p>
-                                                <br>
+                    <div class="tile is-parent">
+
+                        <article class="tile is-child notification" id="recipeTile">
+                            <div class="content">
+                                <!-- <div class="card"> -->
+                                <div class="columns is-mobile">
+                                    <div class="columns">
+
+                                        <div class="column is-12">
+                                            <div class="panTree-image">
+                                                <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand"
+                                                    width="85%">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </article>
-                
+                            </div>
+                        </article>
+
                     </div>
 
                 </div>
 
-                <div class="tile is-parent is-12" id="recipeTile">
+                <div class="tile is-parent is-12" id="recipeSearch">
                     <article class="tile is-child notification is-info">
                         <div class="content">
                             <!-- <div class="card"> -->
                             <div class="columns is-mobile">
                                 <div class="columns">
-                                    <div class="column is-4">
+                                    <div class="column is-4" id="recipeBrent">
+                                        <span>Click</span> on the <span>image</span> to search for any recipes!
+
                                         <a href="/recipeSearch">
-                                            <img
-                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc">
+                                            <img {{!-- src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxEEVgF9vkhsfFrJJHSjj_7FZUOUrE08G5PKngwInvDwMLZnE9MzijXYpTKvY&usqp=CAc"> --}}
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT2BfKZqJgLl2Wc7obB3zzF5Qi3DVLn9sqlXnlLzfVS4tprhvGm&usqp=CAU">
                                         </a>
                                     </div>
-                                    <div class="column is-3">
-                                        <p class="title">Find Recipes</p>
-                                        <p class="subtitle"> Search for 1000s of yummy recipes with items in your
-                                            pantree!</p>
-                                        <br>
+
+                                    <div class="column is-4" id="recipeJB">
+                                        <span>Click</span> on the <span>image</span> for Breakfast thru Desert!
+                                        <a href="/recipeSearch">
+                                            <img
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRjVGioDhmNOqSu6lPLYtUNywVVp0xFY7lLVX30WWj6DzeWmcLM&usqp=CAU">
+                                        </a>
                                     </div>
-                                    <div class="column is-4">
-                                        <p class="subtitle"> Discover new recipes.</p>
-                                        <p class="subtitle"> Make meals delicous meals you never imagined.</p>
-                                        <p class="subtitle"> Wow all of your meal guests with Pantree!</p>
+
+                                    <div class="column is-4" id="recipeJames">
+                                        <span>Click</span> on the <span>image</span> to create your own recipes!
+                                        <a href="/myrecipes">
+                                            <img
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-wP7Egv_bfxPenA3axBC2Rjta7slsZLmCaYBzEjldoyVmkL2a&usqp=CAU">
+                                        </a>
                                     </div>
 
                                 </div>
+
                             </div>
                         </div>
-                </div>
-            </div>
 
+                    </article>
+                </div>
+
+
+
+
+
+
+
+            </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/index.js"></script>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/index.js"></script>
