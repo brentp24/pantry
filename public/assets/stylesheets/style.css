@@ -30,7 +30,7 @@ a {
  #brand2 {
    margin-top: 3px;
    width: 150px;
-   height:100px;
+   height:90px;
  } 
  #navbarBasicExample {
    margin-top: 5px;
@@ -75,11 +75,11 @@ a {
 
  .card-content2 {
   width: 100%;
-   background-color:#354F52;
+   background-color:#CAD2C5
  }
  .logout_btn {
    color: white;
-   margin-left: 500px;
+   margin-right: 20px;
  }
  img{
    /* height: 700px; */
@@ -90,16 +90,21 @@ a {
    height: 100%;
  }
  #shoppingTile {
-  background-color: #354F52;
+  background-color: #CAD2C5;
   margin-left: 75px;
+}
+
+#shoppingId {
+  background-color: #84A98C;
+}
+
+#pantryId {
+  background-color: #2F3E46;
 }
 .shopping-list {
   margin-top: 15px;
 }
  
- #pantryId {
-   background-color: rgb(115, 189, 250);
- }
  .expiring-subtitle {
    color: white;
  }
@@ -107,11 +112,21 @@ a {
    color: white;
  }
  #recipeTile {
-   background-color: #CAD2C5;
+   background-color: #2F3E46;
  }
 #recipeSearch {
-  height: 250px;
+  height: 50px;
+  background-color: #52796F;
+  color: white;
+  margin: 10px;
 }
+
+#recipeSearchTile {
+  height: 250px;
+  background-color: #52796F;
+  color: white;
+}
+
 #recipeBrent {
   margin-left: 25px;
 }
@@ -149,7 +164,7 @@ margin-top: 25px;
 #recipeCard {
   background-color:#CAD2C5;
   width:90%;
-}
+};
 .title{
   text-align: center;
 }
@@ -181,22 +196,35 @@ li {
   background-color: linen;
 }
 
-nav {
+.main-navigation {
   height: 40px;
   background-color: #354F52;
   color: white;
-}
+};
 
-.nav_text_field {
-  float: left;
-  width: 30%;
-}
+#nav_text {
+  /* float: left; */
+  margin-left: 20px;
+  background-color: #354F52;
+  color: white;
+};
+
+.nav_text {
+  /* float: left; */
+  margin-left: 20px;
+  background-color: #354F52;
+  color: white;
+};
+
 
 .nav_btns {
   float: right;
   width: 60%;
-}
+};
 
 /* .is-primary {
   background-color: #354F52;} */
 
+  .navbar-menu {
+    background-color: #CAD2C5;
+  };
