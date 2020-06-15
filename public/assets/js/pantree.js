@@ -88,21 +88,6 @@ $(document).ready(() => {
   const resultsRanking = document.getElementById("selectCriteria");
 
   //post the request query to the database
-  function postRequest() {
-    requestObject = {
-      apikey: "527c6d48a93a43bf8f435bcfd7846114",
-      ingredients: "cheese,flour,apples,milk,carrots",
-      limitLicense: true,
-      cuisine: $("#selectCuisine").val(),
-      number: resultsNumber.value,
-      ranking: resultsRanking.value,
-      ignorePantry: true,
-      type: $("#selectType").val(),
-      diet: $("#selectDiet").val()
-    };
-
-    console.log(requestObject);
-  }
 
   $(".runSpoonacular").on("submit", event => {
     event.preventDefault();
@@ -128,41 +113,8 @@ $(document).ready(() => {
       data: requestObject,
       success: function() {
         console.log("New search created!");
-        location.reload();  
+        location.reload();
       }
-    })
-
-    // Send the POST request.
-    // fetch("/api/recipe", {
-    //   method: "POST", // CHANGE TO POST
-    //   // data: JSON.stringify(requestObject),
-    //   body: requestObject
-    // }).then( function() {
-    //   console.log("New search created!");
-    //   location.reload();  
-    // })
-
-    // .then(() => {
-    //   console.log("New search created!");
-    //   location.reload();
-    // });
-    // .then(() => {
-    //   // Reload the page to get the updated list
-    //   location.reload();
-    // });
-
-
-      //   // Send the POST request.
-      //   $.ajax("/api/myrecipes/", {
-      //     type: "POST",
-      //     data: newRecipe
-      //   }).then(() => {
-      //     console.log("created new recipe");
-      //     // Reload the page to get the updated list
-      //     location.reload();
-      //   });
-      // });
-
-
+    });
   });
 });
