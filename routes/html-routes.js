@@ -145,6 +145,28 @@ module.exports = function(app) {
     });
   });
 
+  // POST route for saving a new Recipe - hw example
+  app.post("/recipe", (req, res) => {
+    console.log("Params from body");
+    console.log(req.body.ranking);
+    console.log(req.user.id);
+    console.log(req.body.type);
+    console.log(req.body.diet);
+    console.log(req.body.cuisine);
+    console.log(req.body.number);
+    db.RecipeSearch.create({
+      selectionCriteria: req.body.ranking,
+      userID: req.user.id,
+      mealType: req.body.type,
+      dietType: req.body.diet,
+      cuisineType: req.body.cuisine,
+      numberResults: req.body.number
+    }).then(recipePost => {
+      // res.json(recipePost);
+      res.sendStatus(200);
+    });
+  });
+
   // Show the user the individual recipe and the form to update the recipe.
   app.get("/:id", (req, res) => {
     db.Recipe.findAll({

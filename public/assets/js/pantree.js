@@ -89,23 +89,34 @@ $(document).ready(() => {
 
   //post the request query to the database
   function postRequest() {
-    requestObject = {
-      apikey: "527c6d48a93a43bf8f435bcfd7846114",
-      ingredients: "cheese,flour,apples,milk,carrots",
-      limitLicense: true,
-      cuisine: $("#selectCuisine").val(),
-      number: resultsNumber.value,
-      ranking: resultsRanking.value,
-      ignorePantry: true,
-      type: $("#selectType").val(),
-      diet: $("#selectDiet").val()
-    };
+    $(".runSpoonacular").on("submit", event => {
+      event.preventDefault();
+      postRequest();
+      requestObject = {
+        // apikey: "527c6d48a93a43bf8f435bcfd7846114",
+        // ingredients: "cheese,flour,apples,milk,carrots",
+        // limitLicense: true,
+        cuisine: $("#selectCuisine").val(),
+        number: $("#resultsNumber").val(),
+        ranking: $("#selectCriteria").val(),
+        // ignorePantry: true,
+        type: $("#selectType").val(),
+        diet: $("#selectDiet").val()
+      };
+      // Send the POST request.
+      $.ajax({
+        url: "/recipe",
+        type: "POST", // CHANGE TO POST
+        // data: JSON.stringify(requestObject),
+        data: requestObject,
+        success: function () {
+          console.log("New search created!");
+          location.reload();
+        }
+      })
 
-    console.log(requestObject);
-  }
-
-  $(".runSpoonacular").on("submit", event => {
-    event.preventDefault();
-    postRequest();
-  });
-});
+      $(".runSpoonacular").on("submit", event => {
+        event.preventDefault();
+        postRequest();
+      });
+    });
