@@ -34,9 +34,12 @@ a {
  } 
  #navbarBasicExample {
    margin-top: 5px;
-   margin-left: 350px;
+    /* margin-left: 350px;  */
    margin-bottom: 45px;
    height: 70px;
+ }
+ .navbar-start {
+   margin-left: 25%;
  }
 
 
@@ -136,6 +139,16 @@ a {
 #recipeCard {
   height: 220px;
 }
+#panTreeImage {
+  margin-top: 55px;
+  margin-right: 30px;
+}
+.shopping-list {
+  color: white;
+}
+/* .subtitle {
+  margin-top: 25px;
+} */
 
 
 /*Shopping Page*/
