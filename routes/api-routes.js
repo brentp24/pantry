@@ -5,6 +5,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
 module.exports = function (app) {
+  // const router = app.Router();
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -366,7 +367,8 @@ module.exports = function (app) {
     // });
 
     // POST route for saving a new Recipe - hw example
-    app.get("/searchRecipes", (req, res) => {
+    // router.post("/api/recipe", (req, res) => {
+    app.post("/api/recipe", (req, res) => {
       console.log("Params from body");
       console.log(req.body.ranking);
       console.log(req.user.id);
@@ -384,7 +386,10 @@ module.exports = function (app) {
       }).then(recipePost => {
         // res.json(recipePost);
         res.sendStatus(200);
-      });
+        
+
+
+      })
     });
 
   });

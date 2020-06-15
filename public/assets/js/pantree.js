@@ -106,30 +106,42 @@ $(document).ready(() => {
 
   $(".runSpoonacular").on("submit", event => {
     event.preventDefault();
-    postRequest();
+    // postRequest();
 
     requestObject = {
-      apikey: "527c6d48a93a43bf8f435bcfd7846114",
-      ingredients: "cheese,flour,apples,milk,carrots",
-      limitLicense: true,
+      // apikey: "527c6d48a93a43bf8f435bcfd7846114",
+      // ingredients: "cheese,flour,apples,milk,carrots",
+      // limitLicense: true,
       cuisine: $("#selectCuisine").val(),
       number: $("#resultsNumber").val(),
       ranking: $("#selectCriteria").val(),
-      ignorePantry: true,
+      // ignorePantry: true,
       type: $("#selectType").val(),
       diet: $("#selectDiet").val()
     };
 
-    // Send the POST request.
+    // // Send the POST request.
     $.ajax({
-      url: "/searchRecipes",
-      type: "GET", // CHANGE TO POST
-      data: JSON.stringify(requestObject),
+      url: "/api/recipe",
+      type: "POST", // CHANGE TO POST
+      // data: JSON.stringify(requestObject),
+      data: requestObject,
       success: function() {
         console.log("New search created!");
         location.reload();  
       }
     })
+
+    // Send the POST request.
+    // fetch("/api/recipe", {
+    //   method: "POST", // CHANGE TO POST
+    //   // data: JSON.stringify(requestObject),
+    //   body: requestObject
+    // }).then( function() {
+    //   console.log("New search created!");
+    //   location.reload();  
+    // })
+
     // .then(() => {
     //   console.log("New search created!");
     //   location.reload();
