@@ -39,16 +39,6 @@ a {
    height: 70px;
  }
 
-/*///////////////////////////log in/////////////////////////*/
-
-
-
-
-
-
-
-
-
 
 /*///////////////////////////log in/////////////////////////*/
 
@@ -81,63 +71,76 @@ a {
   margin-left: 45px;
 }
 
-
-
  /*///////////////////////////Main Pantry/////////////////////////*/
- 
+
  .card-content2 {
   width: 100%;
-  height: 785px;
    background-color: lightsalmon;
+ }
+ .logout_btn {
+   color: white;
+   margin-left: 500px;
  }
  img{
    /* height: 700px; */
    cursor: pointer;
  }
  #shoppingTile {
-margin-left: 15px;
- }
- #expiring-subtitle {
-   margin-top: 15px;
- }
-#recipeTile {
-  /* margin-left: 15px; */
-  height:50px;
+margin-left: 75px;
 }
-
-#mealTile {
+.shopping-list {
+  margin-top: 15px;
+}
+ 
+ #pantryId {
+   background-color: rgb(115, 189, 250);
+ }
+ .expiring-subtitle {
+   color: white;
+ }
+ #pantryText {
+   color: white;
+ }
+ #recipeTile {
+   background-color: khaki;
+ }
+#recipeSearch {
+  height: 250px;
+}
+#recipeBrent {
+  margin-left: 25px;
+}
+#recipeJames {
   margin-right: 15px;
 }
-#sidePic {
+#recipeCard {
+  height: 220px;
+}
+
+
+/*Shopping Page*/
+#shoppingContainer {
+  background-color: khaki;
+  width: 90%;
+}
+#shoppingNotification {
+background-color: lightcoral;
+/* width: 550px; */
+/* margin-left: 10%; */
+margin-top: 25px;
+}
+
+/*PanTree page*/
+#panTreeContainer {
+    background-color: khaki;
+    width: 90%;
+  }
+  #panTreeNotification {
+  background-color: lightcoral;
   margin-top: 25px;
-}
-#dinnerPic {
-  margin-top: 25px;;
-}
+  }
+  
 
-
-/*Expiring Page*/
-#expiringContainer{
-  height:550px;
-  background-color: paleturquoise;
-
-}
-#handlebarPrac {
-  height: 450px;
-  width: 450px;
-  background-color: linen;
-}
-
-
-/*Recipe Page
-.notification {
-  width:90%;
-  height: 100%;
-  background-color: paleturquoise;
-#recipeContainer {
-  /* height:550px; */
-  /* background-color: linen
-} */
 #recipeCard {
   background-color: rgb(185, 183, 183);
   width:90%;
@@ -174,18 +177,10 @@ height: 250px;
 
 background-color: skyblue;
 }
-#handlebarPrac {
-  height: 450px;
-  width: 450px;
-  background-color: linen;
-}
 
 #recipeTile {
   min-height: 400px;
 }
-
-
-
 
 /*Side Dish Page*/
 #sidedishContainer {
@@ -198,23 +193,10 @@ background-color: skyblue;
   background-color: linen;
 }
 
-
 /*Main Course Page*/
 #maincourseContainer {
   background-color: rgb(165, 135, 235);
 }
-
-#handlebarPrac {
-  height: 450px;
-  width: 450px;
-  background-color: linen;
-}
-
-/*Shopping list*/
-/* .w3-container {
-  margin-left: 450px;
-} */
-
 
 nav {
   height: 40px;

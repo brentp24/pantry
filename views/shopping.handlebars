@@ -6,11 +6,11 @@
     <a class="navbar-item" href="/homepage">
       Main Pantry
     </a>
-    
-    <a href="/expiring" class="navbar-item">
-      Pantry
+
+    <a href="/shopping" class="navbar-item">
+      Shopping
     </a>
-    <a href="/recipe" class="navbar-item">
+    <a href="/recipeSearch" class="navbar-item">
       Recipes
     </a>
     <div class="navbar-item has-dropdown is-hoverable">
@@ -18,13 +18,13 @@
         Dinner
       </a>
       <div class="navbar-dropdown">
-        <a class="navbar-item" href="/appetizers">
+        <a class="navbar-item" href="/recipeSearch">
           Appetizers
         </a>
-        <a class="navbar-item" href="/sidedish">
+        <a class="navbar-item" href="/recipeSearch">
           Side Dishes
         </a>
-        <a class="navbar-item" href="/maincourse">
+        <a class="navbar-item" href="/recipeSearch">
           Main Course
         </a>
       </div>
@@ -34,218 +34,63 @@
     </div>
   </div>
 </div>
- <div class="container" id="shoppingContainer">
-  <h1>Grocery List</h1>
-
-    <section class="productSearchSection">
-      <h2>Search for products to add to your shopping list:</h2>
-      <form action="/search_product_shopping">
-        <input type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
-        <button type="submit">Search</button>
-      </form>
-    </section>
 
 
-  {{#unless start}}
-    {{#unless status}}
-      <p>Item not found.</p>
-    {{/unless}}
+<div class="container is-fluid" id="shoppingContainer">
+  <div class="columns">
 
-    {{#if status}}
-    <form action="/add_to_shopping_list">
-      {{#each productsFound}}
-        <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-shelfLife="{{selfLife}}" data-clipartURL="{{clipartURL}}">
-        <label for="{{itemName}}">{{itemName}}</label>
-        <br>
-      {{/each}}
-      <input type="submit" value="Add to Shopping List">
-    </form>
-    {{/if}}
-  {{/unless}}
+    <div class="column is-4">
+        <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand" width="85%">
+    </div>
 
+    <div class="notification" id="shoppingNotification">
+      <div class="column is-12">
+        <section class="productSearchSection">
+          <h2>Search for products to add to your shopping list:</h2>
+          <form action="/search_product_shopping">
+            <input type="search" name="product" placeholder="Broccoli, Bananas, Brownie Mix, etc...">
+            <button type="submit">Search</button>
+          </form>
+        </section>
+        {{#unless start}}
+        {{#unless status}}
+        <p>Item not found.</p>
+        {{/unless}}
 
-  <h2>Shopping List</h2>
-
-  <form action="/shopping_list_to_pantree">
-    {{#each userShoppingList}}
-      <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}" data-category="{{category}}" data-clipartURL="{{clipartURL}}">
-      <label for="{{itemName}}">{{itemName}}</label>
-      <br>
-    {{/each}}
-    <input type="submit" value="Add to Pantree">
-  </form>
-  
-
-
-
-  <table class="pure-table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Item</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>
-          <div class="pure-control-group">
-
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>2</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>3</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>6</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>8</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>10</td>
-        <td>
-          <div class="pure-control-group">
-            <label for="aligned-foo"></label>
-            <input type="text" id="aligned-foo" placeholder="Item" />
-          </div>
-        </td>
-        <td>
-          <label for="aligned-foo"></label>
-          <input type="text" id="aligned-foo" placeholder="Amount" />
-          <!-- </div> -->
-        </td>
-        <td></td>
-      </tr>
+        {{#if status}}
+        <form action="/add_to_shopping_list">
+          {{#each productsFound}}
+          <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}"
+            data-category="{{category}}" data-shelfLife="{{selfLife}}" data-clipartURL="{{clipartURL}}">
+          <label for="{{itemName}}">{{itemName}}</label>
+          <br>
+          {{/each}}
+          <input type="submit" value="Add to Shopping List">
+        </form>
+        {{/if}}
+        {{/unless}}
+        <h2>Shopping List</h2>
+        <form action="/shopping_list_to_pantree">
+          {{#each userShoppingList}}
+          <input type="checkbox" name="{{itemName}}" value="{{id}}" data-id="{{id}}" data-id="{{itemName}}"
+            data-category="{{category}}" data-clipartURL="{{clipartURL}}">
+          <label for="{{itemName}}">{{itemName}}</label>
+          <br>
+          {{/each}}
+          <input type="submit" value="Add to Pantree">
+        </form>
+      </div>
+    </div>
 
 
+    <div class="column is-4">
+        <img src="assets/img/pantree_primary_logo.png" alt="pantree_brand" width="85%">
+    </div>
+
+
+
+
+  </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{{!-- <script type="text/javascript" src="/assets/js/shopping.js"></script> --}}
