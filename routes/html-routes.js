@@ -7,18 +7,40 @@ const axios = require("axios");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
-  app.get("/", (req, res) => {
+  app.all("/", (req, res) => {
     res.render("index");
   });
 
   app.get("/login", (req, res) => {
+    if (req.user) {
+      res.redirect("/homepage");
+    }
     res.render("login");
   });
   app.get("/createAccount", (req, res) => {
+    if (req.user) {
+      res.redirect("/homepage");
+    }
     res.render("createAccount");
   });
+
   app.get("/homepage", (req, res) => {
-    res.render("homepage");
+    if (!req.user) {
+      res.redirect("/login");
+    }
+    // Adding a default recipeSearch for user on visit of recipe search
+    db.RecipeSearch.create({
+      selectionCriteria: 1,
+      userID: req.user.id,
+      mealType: "main course",
+      dietType: "All diet types",
+      cuisineType: "All cuisines",
+      numberResults: 3
+    }).then(() => {
+      // res.json(recipePost);
+      res.render("homepage");
+      // res.sendStatus(200);
+    });
   });
 
   app.get("/recipeSearch", (req, res) => {
@@ -29,12 +51,13 @@ module.exports = function(app) {
   app.get("/recipe", (req, res) => {
     db.RecipeSearch.findAll({
       limit: 1,
-      // where: {
-      //   //your where conditions, or without them if you need ANY entry
-      //   userID: req.user.id
-      // },
+      where: {
+        //your where conditions, or without them if you need ANY entry
+        userID: req.user.id
+      },
       order: [["createdAt", "DESC"]]
     }).then(recipeSearch => {
+      // console.log(recipeSearch);
       //run spoonacular search
       apikey = "527c6d48a93a43bf8f435bcfd7846114";
       ingredients = "&ingredients=" + "cheese,flour,apples,milk,carrots";
@@ -69,13 +92,13 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/login", (req, res) => {
-    // If the user already has an account send them to the front page
-    if (req.user) {
-      res.redirect("/homepage");
-    }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
-  });
+  // app.get("/login", (req, res) => {
+  //   // If the user already has an account send them to the front page
+  //   if (req.user) {
+  //     res.redirect("/homepage");
+  //   }
+  //   res.sendFile(path.join(__dirname, "../public/login.html"));
+  // });
 
   app.get("/shopping", (req, res) => {
     if (!req.user) {
