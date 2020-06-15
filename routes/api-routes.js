@@ -206,6 +206,7 @@ module.exports = function (app) {
     }
   });
 
+  
   app.get("/shopping_list_to_pantree", (req, res) => {
     const productsSelected = req.query;
 
@@ -246,6 +247,7 @@ module.exports = function (app) {
     }
     res.redirect("/shopping");
   });
+
 
   // Get route for returning product search results on pantree page
   app.get("/search_product_pantree", (req, res) => {
