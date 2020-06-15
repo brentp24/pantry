@@ -197,7 +197,7 @@ module.exports = function (app) {
   });
 
   // Show the user the individual recipe and the form to update the recipe.
-  app.get("/:id", (req, res) => {
+  app.get("/myrecipes/:id", (req, res) => {
     db.Recipe.findAll({
       id: req.params.id
     }).then(myRecipes => {
