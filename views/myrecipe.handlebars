@@ -54,7 +54,11 @@
   </div>
   <div class ="form-group ingredients-submission">
 	  <label for="items">Ingredients:</label>
-	  {{!-- <input type="text" id="items" name="items" placeholder= "1 tsp sugar">{{this.item}}</input> --}}
+	   <textarea id="ing" name="recipe">{{this.ingredientsName}}</textarea>
+  </div>
+   <div class ="form-group instructions-submission">
+	  <label for="items">Instructions:</label>
+	   <textarea id="ins" name="recipe">{{this.instructionsName}}</textarea>
   </div>
 <button type="submit">Add Additional Ingredients</button>
 <br>
@@ -64,4 +68,4 @@
 
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="./../public/assets/js/myrecipe.js"></script>
+<script type="text/javascript" src="/assets/js/myrecipe.js"></script>

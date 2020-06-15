@@ -51,6 +51,12 @@ $(document).ready(() => {
         .trim(),
       recipeName: $("#rec")
         .val()
+        .trim(),
+      ingredientsName: $("#ing")
+        .val()
+        .trim(),
+      instructionsName: $("#ins")
+        .val()
         .trim()
     };
 

@@ -136,7 +136,7 @@ module.exports = function(app) {
     res.render("addrecipes");
   });
 
-  // Serve index.handlebars to the root route.
+  // displays all recipes in my recipes
   app.get("/myrecipes", (req, res) => {
     db.Recipe.findAll({}).then(myRecipes => {
       res.render("myrecipes", {
