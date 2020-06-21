@@ -9,16 +9,15 @@
       </div>
 
 
-      <div class="column is-2">
-        <h2>Sign Up Form</h2>
+      <div class="column is-2" id="create">
         <form class="signup">
+        <h2>Sign Up Form</h2>
           <div class="form-group">
             {{!-- <label for="exampleInputFirstName1">First Name</label> --}}
             <input type="firstName" class="form-control" id="first-name-input" placeholder="First Name">
           </div>
           {{!-- <label for="exampleInputLastName1">Last Name</label> --}}
           <input type="lastName" class="form-control" id="last-name-input" placeholder="Last Name">
-          {{!-- </div> --}}
           <div class="form-group">
             {{!-- <label for="exampleInputEmail1">Email address</label> --}}
             <input type="email" class="form-control" id="email-input" placeholder="Email">
@@ -32,9 +31,9 @@
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
           <button type="submit" class="btn btn-default">Sign Up<a href="/login"></a></button>
+        <p>Or log in <a href="/login"><span>here</span></a></p>
         </form>
         <br />
-        <p>Or log in <a href="/login"><span>here</span></a></p>
       </div>
 
       <div class="column is-5">
