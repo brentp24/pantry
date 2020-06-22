@@ -9,7 +9,9 @@
   height: 630px;
   background-color: #CAD2C5
 }
-
+.card-footer {
+  width: 100%;
+}
 .card-footer-item {
   border: 1px solid white;
   background-color: #354F52;
@@ -42,29 +44,42 @@ a {
    margin-left: 25%;
  }
 
-
-/*///////////////////////////log in/////////////////////////*/
-
- #loginCard {
-  background-color:#CAD2C5;
-  height: 360px;
-  margin-top: 150px;
+/*///////////////////////////create account/////////////////*/
+.signup {
+  margin-left: 20%;
+}
+.sign-up {
+  margin-left: 9%;
+  margin-top: 15px;
 }
 
+/*///////////////////////////log in/////////////////////////*/
+.login-container {
+  margin-bottom: 10%;
+}
+ #loginCard {
+  background-color:#CAD2C5;
+  height: 80%;
+  margin-top: 10%;
+}
+p{
+  /* margin-left: 8%; */
+}
 #loginHeight{
   background-color: #CAD2C5;
   height: 310px;
-  margin-left: 25px;
-  margin-right: 25px;
+  margin: auto;
 }
 
 #loginHeights{
   background-color: #CAD2C5;
   height: 260px;
   margin-top: 15px;
+  margin: 10%;
 }
 .login {
   margin-top: 5px;
+  margin-left: 5%;
 }
 .form-control {
   margin-top: 15px;
@@ -78,14 +93,18 @@ a {
 
  .card-content2 {
   width: 100%;
-   background-color:#CAD2C5
+  height: 100%;
+   background-color:#CAD2C5;
+ }
+ #navigation {
+  margin-right: 35%;
+  width: 100%;
  }
  .logout_btn {
-   color: white;
-   margin-right: 20px;
+   color:white;
+   margin-right: 95%;
  }
  img{
-   /* height: 700px; */
    cursor: pointer;
  }
  #panTreeImage {
@@ -94,8 +113,9 @@ a {
  }
  #shoppingTile {
   background-color: #CAD2C5;
-  margin-left: 75px;
+  height: 100%;
 }
+
 
 #shoppingId {
   background-color: #84A98C;
@@ -118,20 +138,18 @@ a {
    background-color: #2F3E46;
  }
 #recipeSearch {
-  height: 50px;
   background-color: #52796F;
   color: white;
   margin: 10px;
 }
 
 #recipeSearchTile {
-  height: 250px;
   background-color: #52796F;
   color: white;
 }
 
 #recipeBrent {
-  margin-left: 25px;
+  /* margin-left: 25px; */
 }
 #recipeJames {
   margin-right: 15px;
